@@ -1,0 +1,15 @@
+{
+  "name": "combattracker",
+  "version": "0.0.1",
+  "description": "Simple Combat Tracker",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^31.0.1"
+  },
+  "dependencies": {
+    "csv-parse": "^5.5.6"
+  }
+}
