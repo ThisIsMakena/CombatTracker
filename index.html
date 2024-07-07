@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combat Tracker</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Combat Tracker</h1>
+    <table id="playerTable">
+        <thead>
+            <tr>
+                <th>Players</th>
+                <th>Max Health</th>
+                <th>Current Health</th>
+                <th>Action</th>
+                <th>Initiative</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+        <button id="run-initiative">Run Initiative</button>
+        <button id="clear-initiative">Clear Initiative</button>
+        <label for="monsters-dropdown">Select Monster:</label>
+        <select id="monsters-dropdown"></select>
+    <table id="monsterTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>ALIGNMENT</th>
+                <th>Size</th>
+                <th>AC</th>
+                <th>HP</th>
+                <th>Spellcasting?</th>
+                <th>Attack 1 damage</th>
+                <th>Attack 2 Damage</th>
+                <th>Attack 3 Damage</th>
+                <th>Challenge Rating</th>
+            </tr>
+        </thead>
+        <tbody id="monsterTableBody"></tbody>
+    </table>
+    <button id="add-monster">Add Monster</button>
+    <script src="renderer.js"></script>
+</body>
+</html>
