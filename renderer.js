@@ -34,12 +34,14 @@ window.api.onInitPlayers((players) => {
         const button1 = document.createElement('button');
         button1.textContent = 'Heal';
         button1.addEventListener('click', async () => {
+            const value = parseInt(actionInput?.value) || 0;
+            /*
             const value = parseInt(actionInput.value || 0, 10);
             if (isNaN(value)) {
                 console.error('Invalid number for healing');
                 return;
             }
-
+            */
             try {
                 const updatedPlayer = await window.api.applyHealing(player, value);
                 player.CurrentHealth = updatedPlayer.CurrentHealth;
@@ -53,12 +55,14 @@ window.api.onInitPlayers((players) => {
         const button2 = document.createElement('button');
         button2.textContent = 'Damage';
         button2.addEventListener('click', async () => {
+            const value = parseInt(actionInput?.value) || 0;
+            /*
             const value = parseInt(actionInput.value || 0, 10);
             if (isNaN(value)) {
                 console.error('Invalid number for damage');
                 return;
             }
-
+            */
             try {
                 const updatedPlayer = await window.api.applyDamage(player, value);
                 player.CurrentHealth = updatedPlayer.CurrentHealth;

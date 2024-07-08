@@ -28,7 +28,7 @@ function getMonsters(callback) {
                 'Attack 1 damage': monster['Attack 1 damage'],
                 'Attack 2 Damage': monster['Attack 2 Damage'],
                 'Attack 3 Damage': monster['Attack 3 Damage'],
-                'Challenge Rating': parseFloat(monster['Challenge Rating (Decimal)'])
+                CR: monster.CR
             }));
             callback(null, monsters);
         });
