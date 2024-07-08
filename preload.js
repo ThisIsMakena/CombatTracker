@@ -21,7 +21,9 @@ contextBridge.exposeInMainWorld('api', {
     applyHealing: (player, amount) => applyHealing(player, amount),
     applyDamage: (player, amount) => applyDamage(player, amount),
     rollDie: (sides) => ipcRenderer.invoke('roll-die', sides),
-    getMonsters: () => ipcRenderer.invoke('get-monsters')
+    getMonsters: () => ipcRenderer.invoke('get-monsters'),
+    computeAttackValue: (attackValue) => ipcRenderer.invoke('compute-attack-values', attackValue)
+    
 });
 
 // Custom functions
