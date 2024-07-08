@@ -1,8 +1,11 @@
+//main.js
+
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const { getPlayers } = require('./getPlayers');
 const { applyHealing, applyDamage } = require('./playerHealth');
 const { rollDie } = require('./diceroller');
+const { getMonsters } = require('./getMonsters');
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
@@ -65,4 +68,16 @@ ipcMain.handle('apply-damage', async (event, player, amount) => {
 
 ipcMain.handle('roll-die', async (event, sides) => {
     return rollDie(sides);
+});
+
+ipcMain.handle('get-monsters', async () => {
+    return new Promise((resolve, reject) => {
+        getMonsters((err, monsters) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(monsters);
+            }
+        });
+    });
 });
