@@ -34,7 +34,7 @@ window.api.onInitPlayers((players) => {
         const button1 = document.createElement('button');
         button1.textContent = 'Heal';
         button1.addEventListener('click', async () => {
-            const value = parseInt(actionInput.value, 10);
+            const value = parseInt(actionInput.value || 0, 10);
             if (isNaN(value)) {
                 console.error('Invalid number for healing');
                 return;
@@ -53,7 +53,7 @@ window.api.onInitPlayers((players) => {
         const button2 = document.createElement('button');
         button2.textContent = 'Damage';
         button2.addEventListener('click', async () => {
-            const value = parseInt(actionInput.value, 10);
+            const value = parseInt(actionInput.value || 0, 10);
             if (isNaN(value)) {
                 console.error('Invalid number for damage');
                 return;
