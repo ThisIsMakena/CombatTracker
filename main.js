@@ -6,7 +6,7 @@ const { getPlayers } = require('./getPlayers');
 const { applyHealing, applyDamage } = require('./playerHealth');
 const { rollDie } = require('./diceroller');
 const { getMonsters } = require('./getMonsters');
-const { computeAttackValue } = require('./attackOutputs'); // Adjust the path as per your project structure
+const { computeAttackValue } = require('./attackOutputs'); 
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
