@@ -135,12 +135,12 @@ async function loadMonsters() {
         monstersDropdown.innerHTML = ''; // Clear existing options
         monsters.forEach(monster => {
             const option = document.createElement('option');
-            option.value = monster.Name;
-            option.textContent = monster.Name;
+            option.value = monster.name;
+            option.textContent = monster.name;
             monstersDropdown.appendChild(option);
         });
 
-        // Stores monsters globally
+        // Store monsters globally
         window.monstersData = monsters;
     } catch (error) {
         console.error('Error fetching monsters:', error);
@@ -150,6 +150,8 @@ async function loadMonsters() {
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
 });
+
+/*
 
 //displays selected monster details
 
@@ -172,7 +174,6 @@ function displaySelectedMonster(monsterName) {
 document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
     displaySelectedMonster(event.target.value);
 });
-
 
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
@@ -273,12 +274,8 @@ function addMonsterToPlayerTable(monsterName) {
     }
 }
 
-// Call the function when the document is ready
-document.addEventListener('DOMContentLoaded', () => {
-    loadMonsters();
-});
-
 document.getElementById('add-monster').addEventListener('click', () => {
     const selectedMonsterName = document.getElementById('monsters-dropdown').value;
     addMonsterToPlayerTable(selectedMonsterName);
 });
+*/
