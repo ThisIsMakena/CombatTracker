@@ -18,10 +18,10 @@ window.api.onInitPlayers((players) => {
         row.appendChild(cell);
 
         // Current Health column
-        const currentHealthCell = document.createElement('td');
+        const CurrentHealthCell = document.createElement('td');
         player.CurrentHealth = player.Health; // Initialize CurrentHealth to max health
-        currentHealthCell.textContent = player.CurrentHealth;
-        row.appendChild(currentHealthCell);
+        CurrentHealthCell.textContent = player.CurrentHealth;
+        row.appendChild(CurrentHealthCell);
 
         // Action column with text field and buttons
         cell = document.createElement('td');
@@ -38,7 +38,7 @@ window.api.onInitPlayers((players) => {
             try {
                 const updatedPlayer = await window.api.applyHealing(player, value);
                 player.CurrentHealth = updatedPlayer.CurrentHealth;
-                currentHealthCell.textContent = player.CurrentHealth;
+                CurrentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -52,7 +52,7 @@ window.api.onInitPlayers((players) => {
             try {
                 const updatedPlayer = await window.api.applyDamage(player, value);
                 player.CurrentHealth = updatedPlayer.CurrentHealth;
-                currentHealthCell.textContent = player.CurrentHealth;
+                CurrentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);
@@ -123,14 +123,15 @@ document.getElementById('clear-initiative').addEventListener('click', () => {
     }
 });
 
-//loads monsters from monster.csv into dropdown
+//they did the mash, they did the monster mash
 
 async function loadMonsters() {
     try {
         const monsters = await window.api.getMonsters();
-        console.log('Monsters:', monsters); // Do something with the monsters data
+        console.log('Monsters:', monsters); 
 
         // Populate the monsters dropdown
+
         const monstersDropdown = document.getElementById('monsters-dropdown');
         monstersDropdown.innerHTML = ''; // Clear existing options
         monsters.forEach(monster => {
@@ -138,64 +139,64 @@ async function loadMonsters() {
             option.value = monster.name;
             option.textContent = monster.name;
             monstersDropdown.appendChild(option);
+         
         });
 
         // Store monsters globally
         window.monstersData = monsters;
-    } catch (error) {
-        console.error('Error fetching monsters:', error);
-    }
+            } catch (error) {
+                console.error('Error fetching monsters:', error);
+            }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
 });
 
-/*
+document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
+    displaySelectedMonster(event.target.value);
+});
 
-//displays selected monster details
 
 function displaySelectedMonster(monsterName) {
     const monsterTableBody = document.getElementById('monsterTableBody');
     monsterTableBody.innerHTML = ''; // Clear existing rows
 
-    const selectedMonster = window.monstersData.find(monster => monster.Name === monsterName);
+    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName); // Use `name`
     if (selectedMonster) {
         const row = document.createElement('tr');
-        Object.keys(selectedMonster).forEach(key => {
+        // Only display specific fields
+        const fieldsToDisplay = ['name', 'hp', 'ac', 'saves'];
+        fieldsToDisplay.forEach(field => {
             const cell = document.createElement('td');
-            cell.textContent = selectedMonster[key];
+            cell.textContent = selectedMonster[field];
             row.appendChild(cell);
         });
         monsterTableBody.appendChild(row);
     }
 }
 
-document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
-    displaySelectedMonster(event.target.value);
-});
-
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
-    const selectedMonster = window.monstersData.find(monster => monster.Name === monsterName);
+    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName); // Use `name`
     if (selectedMonster) {
         const monsterRow = document.createElement('tr');
 
         // Players column
         let cell = document.createElement('td');
-        cell.textContent = selectedMonster.Name;
+        cell.textContent = selectedMonster.name; 
         monsterRow.appendChild(cell);
 
         // Max Health column
         cell = document.createElement('td');
-        cell.textContent = selectedMonster.HP;
+        cell.textContent = selectedMonster.hp; 
         monsterRow.appendChild(cell);
 
         // Current Health column
-        const currentHealthCell = document.createElement('td');
-        currentHealthCell.textContent = selectedMonster.HP;
-        monsterRow.appendChild(currentHealthCell);
+        const CurrentHealthCell = document.createElement('td');
+        CurrentHealthCell.textContent = selectedMonster.hp; 
+        monsterRow.appendChild(CurrentHealthCell);
 
         // Action column with text field and buttons
         cell = document.createElement('td');
@@ -210,8 +211,8 @@ function addMonsterToPlayerTable(monsterName) {
         healButton.addEventListener('click', async () => {
             try {
                 const updatedPlayer = await window.api.applyHealing(selectedMonster, parseInt(actionInput.value, 10));
-                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth;
-                currentHealthCell.textContent = selectedMonster.CurrentHealth;
+                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth; // Ensure the property is set correctly
+                CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -223,8 +224,8 @@ function addMonsterToPlayerTable(monsterName) {
         damageButton.addEventListener('click', async () => {
             try {
                 const updatedPlayer = await window.api.applyDamage(selectedMonster, parseInt(actionInput.value, 10));
-                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth;
-                currentHealthCell.textContent = selectedMonster.CurrentHealth;
+                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth; // Ensure the property is set correctly
+                CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);
@@ -245,30 +246,6 @@ function addMonsterToPlayerTable(monsterName) {
         cell.appendChild(initiativeInput);
         monsterRow.appendChild(cell);
 
-        // Monster Attacks column
-        cell = document.createElement('td');
-        ['Attack 1 damage', 'Attack 2 Damage', 'Attack 3 Damage'].forEach((attack) => {
-            const attackValue = selectedMonster[attack];
-            if (attackValue) {
-                const attackButton = document.createElement('button');
-                attackButton.textContent = attackValue;
-                attackButton.addEventListener('click', async () => {
-                    console.log(`Monster ${selectedMonster.Name} uses ${attack}`);
-                    try {
-                        const totalDamage = await window.api.computeAttackValue(attackValue); // Compute damage
-                        console.log(totalDamage);
-                        // Perform other actions with totalDamage as needed
-                    } catch (error) {
-                        console.error('Error computing attack value:', error);
-                    }
-                });
-                cell.appendChild(attackButton);
-                cell.appendChild(document.createTextNode(' | '));
-            }
-        });
-        
-        monsterRow.appendChild(cell);
-
         // Append the entire row to the player table body
         playerTableBody.appendChild(monsterRow);
     }
@@ -278,4 +255,3 @@ document.getElementById('add-monster').addEventListener('click', () => {
     const selectedMonsterName = document.getElementById('monsters-dropdown').value;
     addMonsterToPlayerTable(selectedMonsterName);
 });
-*/

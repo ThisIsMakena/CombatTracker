@@ -24,6 +24,11 @@ function getMonsters(callback) {
                         name: (monster.name && monster.name[0]) || '',
                         hp: (monster.hp && monster.hp[0]) || 0,
                         ac: (monster.ac && monster.ac[0]) || 0,
+                        size: (monster.size && monster.size[0]) || 0,
+                        passivePerception: (monster.passive && monster.passive[0]) || 0,
+                        skills: (monster.skill && monster.skill[0]) || 0,
+                        saves: (monster.save && monster.save[0]) || 0,
+                        spells: (monster.trait && monster.trait.map(trait => trait.text[0]).join(' ')) || ''
                         //add extra values here
                     };
                 }); 
