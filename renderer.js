@@ -31,13 +31,13 @@ window.api.onInitPlayers((players) => {
         actionInput.value = '';
         actionInput.size = 4;
 
-        const button1 = document.createElement('button');
-        button1.textContent = 'Heal';
-        button1.addEventListener('click', async () => {
+        const healButton = document.createElement('button');
+        healButton.textContent = 'Heal';
+        healButton.addEventListener('click', async () => {
             const value = parseInt(actionInput?.value) || 0;
             try {
-                const updatedPlayer = await window.api.applyHealing(player, value);
-                player.CurrentHealth = updatedPlayer.CurrentHealth;
+                const updatedEntity = await window.api.applyHealing(player, value);
+                player.CurrentHealth = updatedEntity.CurrentHealth;
                 CurrentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
@@ -45,13 +45,13 @@ window.api.onInitPlayers((players) => {
             }
         });
 
-        const button2 = document.createElement('button');
-        button2.textContent = 'Damage';
-        button2.addEventListener('click', async () => {
+        const damageButton = document.createElement('button');
+        damageButton.textContent = 'Damage';
+        damageButton.addEventListener('click', async () => {
             const value = parseInt(actionInput?.value) || 0;
             try {
-                const updatedPlayer = await window.api.applyDamage(player, value);
-                player.CurrentHealth = updatedPlayer.CurrentHealth;
+                const updatedEntity = await window.api.applyDamage(player, value);
+                player.CurrentHealth = updatedEntity.CurrentHealth;
                 CurrentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
@@ -60,8 +60,8 @@ window.api.onInitPlayers((players) => {
         });
 
         cell.appendChild(actionInput);
-        cell.appendChild(button1);
-        cell.appendChild(button2);
+        cell.appendChild(healButton);
+        cell.appendChild(damageButton);
         row.appendChild(cell);
 
         // Initiative column
@@ -110,8 +110,7 @@ document.getElementById('run-initiative').addEventListener('click', async () => 
     }
 });
 
-//clears inititative
-
+// Clears initiative
 document.getElementById('clear-initiative').addEventListener('click', () => {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
     const rows = playerTableBody.getElementsByTagName('tr');
@@ -123,15 +122,13 @@ document.getElementById('clear-initiative').addEventListener('click', () => {
     }
 });
 
-//they did the mash, they did the monster mash
-
+// Function to load monsters and populate the dropdown
 async function loadMonsters() {
     try {
         const monsters = await window.api.getMonsters();
-        console.log('Monsters:', monsters); 
+        console.log('Monsters:', monsters);
 
         // Populate the monsters dropdown
-
         const monstersDropdown = document.getElementById('monsters-dropdown');
         monstersDropdown.innerHTML = ''; // Clear existing options
         monsters.forEach(monster => {
@@ -139,14 +136,13 @@ async function loadMonsters() {
             option.value = monster.name;
             option.textContent = monster.name;
             monstersDropdown.appendChild(option);
-         
         });
 
         // Store monsters globally
         window.monstersData = monsters;
-            } catch (error) {
-                console.error('Error fetching monsters:', error);
-            }
+    } catch (error) {
+        console.error('Error fetching monsters:', error);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -157,16 +153,15 @@ document.getElementById('monsters-dropdown').addEventListener('change', (event) 
     displaySelectedMonster(event.target.value);
 });
 
-
 function displaySelectedMonster(monsterName) {
     const monsterTableBody = document.getElementById('monsterTableBody');
     monsterTableBody.innerHTML = ''; // Clear existing rows
 
-    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName); // Use `name`
+    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (selectedMonster) {
         const row = document.createElement('tr');
         // Only display specific fields
-        const fieldsToDisplay = ['name', 'hp', 'ac', 'saves'];
+        const fieldsToDisplay = ['name', 'hp', 'ac', 'cr', 'alignment', 'size'];
         fieldsToDisplay.forEach(field => {
             const cell = document.createElement('td');
             cell.textContent = selectedMonster[field];
@@ -179,23 +174,24 @@ function displaySelectedMonster(monsterName) {
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
-    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName); // Use `name`
+    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (selectedMonster) {
         const monsterRow = document.createElement('tr');
 
         // Players column
         let cell = document.createElement('td');
-        cell.textContent = selectedMonster.name; 
+        cell.textContent = selectedMonster.name;
         monsterRow.appendChild(cell);
 
         // Max Health column
         cell = document.createElement('td');
-        cell.textContent = selectedMonster.hp; 
+        cell.textContent = selectedMonster.hp;
         monsterRow.appendChild(cell);
 
         // Current Health column
         const CurrentHealthCell = document.createElement('td');
-        CurrentHealthCell.textContent = selectedMonster.hp; 
+        selectedMonster.CurrentHealth = selectedMonster.hp; // Initialize CurrentHealth to max health
+        CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
         monsterRow.appendChild(CurrentHealthCell);
 
         // Action column with text field and buttons
@@ -209,9 +205,10 @@ function addMonsterToPlayerTable(monsterName) {
         const healButton = document.createElement('button');
         healButton.textContent = 'Heal';
         healButton.addEventListener('click', async () => {
+            const value = parseInt(actionInput?.value) || 0;
             try {
-                const updatedPlayer = await window.api.applyHealing(selectedMonster, parseInt(actionInput.value, 10));
-                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth; // Ensure the property is set correctly
+                const updatedEntity = await window.api.applyHealing(selectedMonster, value);
+                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; // Ensure the property is set correctly
                 CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
@@ -222,9 +219,10 @@ function addMonsterToPlayerTable(monsterName) {
         const damageButton = document.createElement('button');
         damageButton.textContent = 'Damage';
         damageButton.addEventListener('click', async () => {
+            const value = parseInt(actionInput?.value) || 0;
             try {
-                const updatedPlayer = await window.api.applyDamage(selectedMonster, parseInt(actionInput.value, 10));
-                selectedMonster.CurrentHealth = updatedPlayer.CurrentHealth; // Ensure the property is set correctly
+                const updatedEntity = await window.api.applyDamage(selectedMonster, value);
+                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; // Ensure the property is set correctly
                 CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
