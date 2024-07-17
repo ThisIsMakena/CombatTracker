@@ -211,9 +211,18 @@ function addMonsterToPlayerTable(monsterName) {
         healButton.addEventListener('click', async () => {
             const value = parseInt(actionInput?.value) || 0;
             try {
+                console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
+        
                 const updatedEntity = await window.api.applyHealing(selectedMonster, value);
-                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; // Ensure the property is set correctly
+                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth;
                 CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
+
+                console.log('After Healing - Current text content Health:', CurrentHealthCell.textContent);
+
+                console.log('After Healing - Current Entity Health:', updatedEntity.CurrentHealth);
+        
+                console.log('After Healing - Current Monster Health:', selectedMonster.CurrentHealth);
+
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -225,9 +234,18 @@ function addMonsterToPlayerTable(monsterName) {
         damageButton.addEventListener('click', async () => {
             const value = parseInt(actionInput?.value) || 0;
             try {
+                console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
+
                 const updatedEntity = await window.api.applyDamage(selectedMonster, value);
                 selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; // Ensure the property is set correctly
-                CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
+                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; // Update the displayed current health
+
+                console.log('After Damage - Current text content Health:', CurrentHealthCell.textContent);
+
+                console.log('After Damage - Current Entity Health:', updatedEntity.CurrentHealth);
+        
+                console.log('After Damage - Current Monster Health:', selectedMonster.CurrentHealth);
+
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);

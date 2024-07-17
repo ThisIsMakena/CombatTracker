@@ -3,14 +3,12 @@
 async function applyHealing(entity, amount) {
     return new Promise((resolve, reject) => {
         try {
-            const currentHealth = parseInt(entity.CurrentHealth, 10);
-            const maxHealth = parseInt(entity.Health, 10);
-            console.log(maxHealth);
-            if (isNaN(currentHealth) || isNaN(maxHealth)) {
-                throw new Error('Invalid health values');
+            if (isNaN(amount)) {
+                throw new Error('Healing amount is not a number');
             }
-            entity.CurrentHealth = Math.min(entity.CurrentHealth + amount, maxHealth);
-            resolve(entity);
+            entity.CurrentHealth = Math.min(entity.CurrentHealth + amount, entity.Health); // Use min to cap at max health
+            entity.CurrentHealth = parseInt(entity.CurrentHealth, 10); // Ensure CurrentHealth is an integer
+            resolve(entity); 
         } catch (error) {
             reject(error);
         }
@@ -22,7 +20,7 @@ async function applyDamage(entity, amount) {
         try {
             entity.CurrentHealth = Math.max(entity.CurrentHealth - amount, 0);
             entity.CurrentHealth = parseInt(entity.CurrentHealth, 10); // Ensure CurrentHealth is an integer
-            resolve(entiy);
+            resolve(entity); 
         } catch (error) {
             reject(error);
         }
