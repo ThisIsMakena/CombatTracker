@@ -3,8 +3,13 @@
 async function applyHealing(entity, amount) {
     return new Promise((resolve, reject) => {
         try {
-            entity.CurrentHealth = Math.min(entity.CurrentHealth + amount, entity.Health);
-            entity.CurrentHealth = parseInt(entity.CurrentHealth, 10); // Ensure CurrentHealth is an integer
+            const currentHealth = parseInt(entity.CurrentHealth, 10);
+            const maxHealth = parseInt(entity.Health, 10);
+            console.log(maxHealth);
+            if (isNaN(currentHealth) || isNaN(maxHealth)) {
+                throw new Error('Invalid health values');
+            }
+            entity.CurrentHealth = Math.min(entity.CurrentHealth + amount, maxHealth);
             resolve(entity);
         } catch (error) {
             reject(error);

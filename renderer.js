@@ -190,7 +190,11 @@ function addMonsterToPlayerTable(monsterName) {
 
         // Current Health column
         const CurrentHealthCell = document.createElement('td');
-        selectedMonster.CurrentHealth = selectedMonster.hp; // Initialize CurrentHealth to max health
+        selectedMonster.CurrentHealth = parseInt(selectedMonster.hp, 10); // Initialize CurrentHealth to max health
+        if (isNaN(selectedMonster.CurrentHealth)) {
+            selectedMonster.CurrentHealth = 0; // Fallback to 0 if initialization fails
+        }
+        console.log('CurrentHealth initialized to:', selectedMonster.CurrentHealth);
         CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
         monsterRow.appendChild(CurrentHealthCell);
 
