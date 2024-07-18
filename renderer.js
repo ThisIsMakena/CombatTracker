@@ -147,10 +147,12 @@ async function loadMonsters() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
+    
 });
 
 document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
     displaySelectedMonster(event.target.value);
+    displaySelectedMonsterSpells(event.target.value);
 });
 
 function displaySelectedMonster(monsterName) {
@@ -160,16 +162,49 @@ function displaySelectedMonster(monsterName) {
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (selectedMonster) {
         const row = document.createElement('tr');
-        // Only display specific fields
         const fieldsToDisplay = ['name', 'hp', 'ac', 'cr', 'alignment', 'size'];
         fieldsToDisplay.forEach(field => {
             const cell = document.createElement('td');
             cell.textContent = selectedMonster[field];
             row.appendChild(cell);
+            
         });
         monsterTableBody.appendChild(row);
     }
 }
+
+function displaySelectedMonsterSpells(monsterName) {
+    const monsterSpellTableBody = document.getElementById('monsterSpellTableBody');
+    monsterSpellTableBody.innerHTML = ''; // Clear existing rows
+
+    const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
+    if (selectedMonster && selectedMonster.spellsByLevel) {
+        Object.keys(selectedMonster.spellsByLevel).forEach(level => {
+            const spellsAtLevel = selectedMonster.spellsByLevel[level];
+            
+            // Create a row for the spell level
+            const levelRow = document.createElement('tr');
+            const levelCell = document.createElement('td');
+            levelCell.textContent = level;
+            levelRow.appendChild(levelCell);
+            monsterSpellTableBody.appendChild(levelRow);
+
+            // Create rows for each spell at this level
+            spellsAtLevel.forEach(spell => {
+                const spellRow = document.createElement('tr');
+                const idCell = document.createElement('td');
+                idCell.textContent = spell.id;
+                spellRow.appendChild(idCell);
+                const nameCell = document.createElement('td');
+                nameCell.textContent = spell.name;
+                spellRow.appendChild(nameCell);
+                monsterSpellTableBody.appendChild(spellRow);
+            });
+        });
+    }
+}
+
+
 
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
@@ -177,6 +212,8 @@ function addMonsterToPlayerTable(monsterName) {
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (selectedMonster) {
         const monsterRow = document.createElement('tr');
+
+        monsterRow.setAttribute('data-id', selectedMonster.id); 
 
         // Players column
         let cell = document.createElement('td');
@@ -198,7 +235,6 @@ function addMonsterToPlayerTable(monsterName) {
         CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
         monsterRow.appendChild(CurrentHealthCell);
 
-        // Action column with text field and buttons
         cell = document.createElement('td');
 
         const actionInput = document.createElement('input');
@@ -214,15 +250,8 @@ function addMonsterToPlayerTable(monsterName) {
                 console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
         
                 const updatedEntity = await window.api.applyHealing(selectedMonster, value);
-                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth;
-                CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
-
-                console.log('After Healing - Current text content Health:', CurrentHealthCell.textContent);
-
-                console.log('After Healing - Current Entity Health:', updatedEntity.CurrentHealth);
-        
-                console.log('After Healing - Current Monster Health:', selectedMonster.CurrentHealth);
-
+                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
+                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -237,15 +266,8 @@ function addMonsterToPlayerTable(monsterName) {
                 console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
 
                 const updatedEntity = await window.api.applyDamage(selectedMonster, value);
-                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; // Ensure the property is set correctly
-                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; // Update the displayed current health
-
-                console.log('After Damage - Current text content Health:', CurrentHealthCell.textContent);
-
-                console.log('After Damage - Current Entity Health:', updatedEntity.CurrentHealth);
-        
-                console.log('After Damage - Current Monster Health:', selectedMonster.CurrentHealth);
-
+                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
+                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);
@@ -257,7 +279,6 @@ function addMonsterToPlayerTable(monsterName) {
         cell.appendChild(damageButton);
         monsterRow.appendChild(cell);
 
-        // Initiative column (empty for now)
         cell = document.createElement('td');
         const initiativeInput = document.createElement('input');
         initiativeInput.type = 'text';
@@ -275,3 +296,6 @@ document.getElementById('add-monster').addEventListener('click', () => {
     const selectedMonsterName = document.getElementById('monsters-dropdown').value;
     addMonsterToPlayerTable(selectedMonsterName);
 });
+
+
+
