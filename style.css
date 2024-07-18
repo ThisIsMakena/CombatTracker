@@ -38,6 +38,6 @@ th {
     text-align: center; 
 }
 
-.highlight {
-    background-color: yellow; /* Change to your desired highlight color */
-}
+tr.selected {
+    background-color: yellow;
+  }

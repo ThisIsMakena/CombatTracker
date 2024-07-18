@@ -147,7 +147,6 @@ async function loadMonsters() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
-    
 });
 
 document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
@@ -204,8 +203,6 @@ function displaySelectedMonsterSpells(monsterName) {
     }
 }
 
-
-
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
@@ -213,11 +210,15 @@ function addMonsterToPlayerTable(monsterName) {
     if (selectedMonster) {
         const monsterRow = document.createElement('tr');
 
-        monsterRow.setAttribute('data-id', selectedMonster.id); 
-
         // Players column
         let cell = document.createElement('td');
         cell.textContent = selectedMonster.name;
+
+        cell.addEventListener('click', () => {
+            displaySelectedMonster(selectedMonster.name);
+            displaySelectedMonsterSpells(selectedMonster.name);
+        });
+
         monsterRow.appendChild(cell);
 
         // Max Health column
@@ -296,6 +297,3 @@ document.getElementById('add-monster').addEventListener('click', () => {
     const selectedMonsterName = document.getElementById('monsters-dropdown').value;
     addMonsterToPlayerTable(selectedMonsterName);
 });
-
-
-
