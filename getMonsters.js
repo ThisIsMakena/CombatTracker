@@ -24,6 +24,7 @@ function getMonsters(callback) {
                     let spellcastingDesc = '';
                     let spellsByLevel = [];
                     let traits = [];
+                    let actions = [];
 
                     // Check if the monster has spellcasting traits
                     if (monster.trait) {
@@ -35,16 +36,19 @@ function getMonsters(callback) {
                                 const cleanedSpellcastingDesc = spellcastingDesc.replace(/\*\s*/g, '');
 
                                 // Extract cantrips
-                                const cantripRegex = /Cantrips \(at will\):\s*((?:<a href="\/spell\/[^"]+">[^<]+<\/a>(?:,\s*)?)*)/i;
+                                const cantripRegex = /Cantrips \(at will\):\s*((?:<a href="\/spell\/([^"]+)">[^<]+<\/a>(?:,\s*)?)*)/i;
                                 const cantripsMatch = cantripRegex.exec(cleanedSpellcastingDesc);
-                                if (cantripsMatch) {
-                                    const cantripLinks = cantripsMatch[1].split(',').map(s => s.trim()).filter(Boolean);
-                                    if (cantripLinks.length > 0) {
-                                        spellsByLevel.push({
-                                            level: 'cantrips',
-                                            slots: 0,
-                                            spells: cantripLinks
-                                        });
+                                if (cantripsMatch && cantripsMatch[1]) {
+                                    const cantripLinks = cantripsMatch[1].match(/\/spell\/([^"]+)/g);
+                                    if (cantripLinks) {
+                                        const cantripIds = cantripLinks.map(link => link.split('/').pop());
+                                        if (cantripIds.length > 0) {
+                                            spellsByLevel.push({
+                                                level: 'cantrips',
+                                                slots: 0,
+                                                spells: cantripIds
+                                            });
+                                        }
                                     }
                                 }
 
@@ -57,15 +61,17 @@ function getMonsters(callback) {
                                     const slots = parseInt(spellLevelMatch[2], 10); // Number of slots
                                     const spellLinks = spellLevelMatch[3]; // All spell links as a single string
 
-                                    // Split spell links by comma, then trim whitespace
-                                    const spells = spellLinks.split(',').map(s => s.trim()).filter(Boolean);
-
-                                    if (spells.length > 0) {
-                                        spellsByLevel.push({
-                                            level: level,
-                                            slots: slots,
-                                            spells: spells
-                                        });
+                                    // Split spell links by comma, then extract IDs
+                                    const spellLinkMatches = spellLinks.match(/\/spell\/([^"]+)/g);
+                                    if (spellLinkMatches) {
+                                        const spells = spellLinkMatches.map(link => link.split('/').pop());
+                                        if (spells.length > 0) {
+                                            spellsByLevel.push({
+                                                level: level,
+                                                slots: slots,
+                                                spells: spells
+                                            });
+                                        }
                                     }
                                 }
                             } else {
@@ -76,6 +82,17 @@ function getMonsters(callback) {
                                         text: trait.text[0]
                                     });
                                 }
+                            }
+                        });
+                    }
+                    // Extract actions
+                    if (monster.action) {
+                        monster.action.forEach(action => {
+                            if (action.name && action.text) {
+                                actions.push({
+                                    name: action.name[0],
+                                    text: action.text[0]
+                                });
                             }
                         });
                     }
@@ -92,7 +109,8 @@ function getMonsters(callback) {
                         alignment: (monster.alignment && monster.alignment[0]) || '',
                         spellcasting: spellcastingDesc,
                         spellsByLevel: spellsByLevel,  // Store spells grouped by level
-                        traits: traits  // Store traits
+                        traits: traits,  // Store traits
+                        action: actions //actions
                     };
                 });
 

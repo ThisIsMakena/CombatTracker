@@ -177,92 +177,106 @@ function displaySelectedMonster(monsterName) {
     }
 }
 
-// Function to display spells of the selected monster
+// Function to display spells, traits, and actions of the selected monster
 function displaySelectedMonsterSpells(monsterName, spellsData) {
-    const monsterSpellTableBody = document.getElementById('monsterSpellTableBody');
-    monsterSpellTableBody.innerHTML = ''; // Clear existing rows
+    const monsterSpellTable = document.getElementById('monsterSpellTable');
+    monsterSpellTable.innerHTML = ''; // Clear existing content
 
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
-    if (selectedMonster && selectedMonster.spellsByLevel) {
-        const processedSpellIds = new Set();
+    if (!selectedMonster) return;
 
-        // Display Cantrips if they exist
-        if (selectedMonster.spellsByLevel['cantrips']) {
-            const cantrips = selectedMonster.spellsByLevel['cantrips'].spells;
-            if (cantrips.length > 0) {
-                // Create a row for Cantrips
-                const cantripRow = document.createElement('tr');
-                const cantripCell = document.createElement('td');
-                cantripCell.colSpan = 3; // Span across all columns for the cantrip header
-                cantripCell.textContent = 'Cantrips';
-                cantripRow.appendChild(cantripCell);
-                monsterSpellTableBody.appendChild(cantripRow);
+    // Display Traits
+    if (selectedMonster.traits && selectedMonster.traits.length > 0) {
+        const traitsHeader = document.createElement('h3');
+        traitsHeader.textContent = 'Traits';
+        monsterSpellTable.appendChild(traitsHeader);
 
-                // Create rows for each cantrip
-                for (let i = 0; i < cantrips.length; i += 3) {
-                    const cantripRow = document.createElement('tr');
+        selectedMonster.traits.forEach(trait => {
+            const traitDiv = document.createElement('div');
+            const traitName = document.createElement('strong');
+            traitName.textContent = trait.name;
+            const traitText = document.createElement('p');
+            traitText.textContent = trait.text;
+            traitDiv.appendChild(traitName);
+            traitDiv.appendChild(traitText);
+            monsterSpellTable.appendChild(traitDiv);
+        });
+    }
 
-                    for (let j = 0; j < 3 && i + j < cantrips.length; j++) {
-                        const cantrip = cantrips[i + j];
-                        const spellId = cantrip.id;
+    // Display Actions
+    if (selectedMonster.action && selectedMonster.action.length > 0) {
+        const actionsHeader = document.createElement('h3');
+        actionsHeader.textContent = 'Actions';
+        monsterSpellTable.appendChild(actionsHeader);
 
-                        if (processedSpellIds.has(spellId)) {
-                            continue;
-                        }
+        selectedMonster.action.forEach(action => {
+            const actionDiv = document.createElement('div');
+            const actionName = document.createElement('strong');
+            actionName.textContent = action.name;
+            const actionText = document.createElement('p');
+            actionText.textContent = action.text;
+            actionDiv.appendChild(actionName);
+            actionDiv.appendChild(actionText);
+            monsterSpellTable.appendChild(actionDiv);
+        });
+    }
 
-                        const spell = spellsData.find(spell => spell.id === spellId);
+    // Display Spells
+    const spellsHeader = document.createElement('h3');
+    spellsHeader.textContent = 'Spells';
+    monsterSpellTable.appendChild(spellsHeader);
 
-                        const nameCell = document.createElement('td');
-                        nameCell.textContent = spell ? spell.name : 'Unknown Spell';
-                        cantripRow.appendChild(nameCell);
-                        processedSpellIds.add(spellId);
-                    }
+    const monsterSpellTableBody = document.createElement('tbody');
+    monsterSpellTable.appendChild(monsterSpellTableBody);
 
-                    monsterSpellTableBody.appendChild(cantripRow);
-                }
-            }
-        }
+    const processedSpellIds = new Set();
 
-        // Display spells for each level
-        Object.keys(selectedMonster.spellsByLevel).forEach(level => {
-            if (level === 'cantrips') return; // Skip cantrips as they are handled above
+    // Display Cantrips if they exist
+    const cantrips = selectedMonster.spellsByLevel.find(spellLevel => spellLevel.level === 'cantrips');
+    if (cantrips && cantrips.spells.length > 0) {
+        const cantripRow = document.createElement('tr');
+        const cantripCell = document.createElement('td');
+        cantripCell.textContent = 'Cantrips';
+        cantripRow.appendChild(cantripCell);
+        monsterSpellTableBody.appendChild(cantripRow);
 
-            const { spells, slots } = selectedMonster.spellsByLevel[level];
-            if (spells.length > 0) {
-                // Create a row for the spell level
-                const levelRow = document.createElement('tr');
-                const levelCell = document.createElement('td');
-                levelCell.colSpan = 3; // Span across all columns for the level header
-                levelCell.textContent = `Level ${level} (${slots} slots)`;
-                levelRow.appendChild(levelCell);
-                monsterSpellTableBody.appendChild(levelRow);
-
-                // Create rows for each spell at this level
-                for (let i = 0; i < spells.length; i += 3) {
-                    const spellRow = document.createElement('tr');
-
-                    for (let j = 0; j < 3 && i + j < spells.length; j++) {
-                        const spellEntry = spells[i + j];
-                        const spellId = spellEntry.id;
-
-                        if (processedSpellIds.has(spellId)) {
-                            continue;
-                        }
-
-                        const spell = spellsData.find(spell => spell.id === spellId);
-
-                        const nameCell = document.createElement('td');
-                        nameCell.textContent = spell ? spell.name : 'Unknown Spell';
-                        spellRow.appendChild(nameCell);
-                        processedSpellIds.add(spellId);
-                    }
-
-                    monsterSpellTableBody.appendChild(spellRow);
-                }
+        cantrips.spells.forEach(spellId => {
+            const spell = spellsData.find(spell => spell.id === spellId);
+            if (spell) {
+                processedSpellIds.add(spellId);
+                const row = document.createElement('tr');
+                const cell = document.createElement('tr');
+                cell.textContent = spell.name;
+                row.appendChild(cell);
+                monsterSpellTableBody.appendChild(row);
             }
         });
     }
+
+    // Display spells for each level
+    selectedMonster.spellsByLevel.forEach(spellLevel => {
+        if (spellLevel.level !== 'cantrips') {
+            const levelRow = document.createElement('tr');
+            const levelCell = document.createElement('td');
+            levelCell.textContent = `Level ${spellLevel.level}`;
+            levelRow.appendChild(levelCell);
+            monsterSpellTableBody.appendChild(levelRow);
+    
+            spellLevel.spells.forEach(spellId => {
+                const spell = spellsData.find(spell => spell.id === spellId);
+                if (spell && !processedSpellIds.has(spellId)) {
+                    processedSpellIds.add(spellId);
+                    const row = document.createElement('tr');
+                    const cell = document.createElement('tr');
+                    cell.textContent = spell.name;
+                    row.appendChild(cell);
+                    monsterSpellTableBody.appendChild(row);
+                }
+            });
+        }
+    });
 }
+
 
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
