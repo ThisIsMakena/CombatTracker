@@ -243,13 +243,16 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         cantrips.spells.forEach(spellId => {
             const spell = spellsData.find(spell => spell.id === spellId);
             if (spell) {
-                processedSpellIds.add(spellId);
-                const row = document.createElement('tr');
-                const cell = document.createElement('tr');
-                cell.textContent = spell.name;
-                row.appendChild(cell);
-                monsterSpellTableBody.appendChild(row);
-            }
+                    processedSpellIds.add(spellId);
+                    const row = document.createElement('tr');
+                    const nameCell = document.createElement('td'); 
+                    nameCell.textContent = spell.name;
+                    row.appendChild(nameCell);
+                    const textCell = document.createElement('td'); 
+                    textCell.textContent = spell.text;
+                    row.appendChild(textCell);
+                    monsterSpellTableBody.appendChild(row);
+                }
         });
     }
 
@@ -267,9 +270,12 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
                 if (spell && !processedSpellIds.has(spellId)) {
                     processedSpellIds.add(spellId);
                     const row = document.createElement('tr');
-                    const cell = document.createElement('tr');
-                    cell.textContent = spell.name;
-                    row.appendChild(cell);
+                    const nameCell = document.createElement('td'); 
+                    nameCell.textContent = spell.name;
+                    row.appendChild(nameCell);
+                    const textCell = document.createElement('td'); 
+                    textCell.textContent = spell.text;
+                    row.appendChild(textCell);
                     monsterSpellTableBody.appendChild(row);
                 }
             });
