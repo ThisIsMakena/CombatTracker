@@ -6,6 +6,7 @@ const { getPlayers } = require('./getPlayers');
 const { applyHealing, applyDamage } = require('./playerHealth');
 const { rollDie } = require('./diceroller');
 const { getMonsters } = require('./getMonsters');
+const { getSpells } = require('./getSpells.js');
 const { computeAttackValue } = require('./attackOutputs'); 
 
 function createWindow() {
@@ -83,6 +84,18 @@ ipcMain.handle('get-monsters', async () => {
     });
 });
 
+
+ipcMain.handle('get-spells', async () => {
+    return new Promise((resolve, reject) => {
+        getSpells((err, spells) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(spells);
+            }
+        });
+    });
+});
 
 ipcMain.handle('compute-attack-values', async (event, attackValue) => {
     return computeAttackValue(attackValue);

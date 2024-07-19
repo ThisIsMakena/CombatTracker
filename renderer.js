@@ -1,5 +1,4 @@
-//renderer.js
-
+// Function to initialize player table
 window.api.onInitPlayers((players) => {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
     playerTableBody.innerHTML = ''; // Clear any existing rows
@@ -18,10 +17,10 @@ window.api.onInitPlayers((players) => {
         row.appendChild(cell);
 
         // Current Health column
-        const CurrentHealthCell = document.createElement('td');
+        const currentHealthCell = document.createElement('td');
         player.CurrentHealth = player.Health; // Initialize CurrentHealth to max health
-        CurrentHealthCell.textContent = player.CurrentHealth;
-        row.appendChild(CurrentHealthCell);
+        currentHealthCell.textContent = player.CurrentHealth;
+        row.appendChild(currentHealthCell);
 
         // Action column with text field and buttons
         cell = document.createElement('td');
@@ -34,11 +33,11 @@ window.api.onInitPlayers((players) => {
         const healButton = document.createElement('button');
         healButton.textContent = 'Heal';
         healButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput?.value) || 0;
+            const value = parseInt(actionInput.value) || 0;
             try {
                 const updatedEntity = await window.api.applyHealing(player, value);
                 player.CurrentHealth = updatedEntity.CurrentHealth;
-                CurrentHealthCell.textContent = player.CurrentHealth;
+                currentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -48,11 +47,11 @@ window.api.onInitPlayers((players) => {
         const damageButton = document.createElement('button');
         damageButton.textContent = 'Damage';
         damageButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput?.value) || 0;
+            const value = parseInt(actionInput.value) || 0;
             try {
                 const updatedEntity = await window.api.applyDamage(player, value);
                 player.CurrentHealth = updatedEntity.CurrentHealth;
-                CurrentHealthCell.textContent = player.CurrentHealth;
+                currentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);
@@ -77,6 +76,7 @@ window.api.onInitPlayers((players) => {
     });
 });
 
+// Roll and sort initiative
 document.getElementById('run-initiative').addEventListener('click', async () => {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
     const rows = playerTableBody.getElementsByTagName('tr');
@@ -110,7 +110,7 @@ document.getElementById('run-initiative').addEventListener('click', async () => 
     }
 });
 
-// Clears initiative
+// Clear initiative
 document.getElementById('clear-initiative').addEventListener('click', () => {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
     const rows = playerTableBody.getElementsByTagName('tr');
@@ -147,13 +147,19 @@ async function loadMonsters() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
+    loadSpells();
+
+    const monstersDropdown = document.getElementById('monsters-dropdown');
+    if (monstersDropdown) {
+        monstersDropdown.addEventListener('change', (event) => {
+            const selectedMonsterName = event.target.value;
+            displaySelectedMonster(selectedMonsterName);
+            displaySelectedMonsterSpells(selectedMonsterName, window.spellsData);
+        });
+    }
 });
 
-document.getElementById('monsters-dropdown').addEventListener('change', (event) => {
-    displaySelectedMonster(event.target.value);
-    displaySelectedMonsterSpells(event.target.value);
-});
-
+// Function to display selected monster details
 function displaySelectedMonster(monsterName) {
     const monsterTableBody = document.getElementById('monsterTableBody');
     monsterTableBody.innerHTML = ''; // Clear existing rows
@@ -166,39 +172,94 @@ function displaySelectedMonster(monsterName) {
             const cell = document.createElement('td');
             cell.textContent = selectedMonster[field];
             row.appendChild(cell);
-            
         });
         monsterTableBody.appendChild(row);
     }
 }
 
-function displaySelectedMonsterSpells(monsterName) {
+// Function to display spells of the selected monster
+function displaySelectedMonsterSpells(monsterName, spellsData) {
     const monsterSpellTableBody = document.getElementById('monsterSpellTableBody');
     monsterSpellTableBody.innerHTML = ''; // Clear existing rows
 
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (selectedMonster && selectedMonster.spellsByLevel) {
-        Object.keys(selectedMonster.spellsByLevel).forEach(level => {
-            const spellsAtLevel = selectedMonster.spellsByLevel[level];
-            
-            // Create a row for the spell level
-            const levelRow = document.createElement('tr');
-            const levelCell = document.createElement('td');
-            levelCell.textContent = level;
-            levelRow.appendChild(levelCell);
-            monsterSpellTableBody.appendChild(levelRow);
+        const processedSpellIds = new Set();
 
-            // Create rows for each spell at this level
-            spellsAtLevel.forEach(spell => {
-                const spellRow = document.createElement('tr');
-                const idCell = document.createElement('td');
-                idCell.textContent = spell.id;
-                spellRow.appendChild(idCell);
-                const nameCell = document.createElement('td');
-                nameCell.textContent = spell.name;
-                spellRow.appendChild(nameCell);
-                monsterSpellTableBody.appendChild(spellRow);
-            });
+        // Display Cantrips if they exist
+        if (selectedMonster.spellsByLevel['cantrips']) {
+            const cantrips = selectedMonster.spellsByLevel['cantrips'].spells;
+            if (cantrips.length > 0) {
+                // Create a row for Cantrips
+                const cantripRow = document.createElement('tr');
+                const cantripCell = document.createElement('td');
+                cantripCell.colSpan = 3; // Span across all columns for the cantrip header
+                cantripCell.textContent = 'Cantrips';
+                cantripRow.appendChild(cantripCell);
+                monsterSpellTableBody.appendChild(cantripRow);
+
+                // Create rows for each cantrip
+                for (let i = 0; i < cantrips.length; i += 3) {
+                    const cantripRow = document.createElement('tr');
+
+                    for (let j = 0; j < 3 && i + j < cantrips.length; j++) {
+                        const cantrip = cantrips[i + j];
+                        const spellId = cantrip.id;
+
+                        if (processedSpellIds.has(spellId)) {
+                            continue;
+                        }
+
+                        const spell = spellsData.find(spell => spell.id === spellId);
+
+                        const nameCell = document.createElement('td');
+                        nameCell.textContent = spell ? spell.name : 'Unknown Spell';
+                        cantripRow.appendChild(nameCell);
+                        processedSpellIds.add(spellId);
+                    }
+
+                    monsterSpellTableBody.appendChild(cantripRow);
+                }
+            }
+        }
+
+        // Display spells for each level
+        Object.keys(selectedMonster.spellsByLevel).forEach(level => {
+            if (level === 'cantrips') return; // Skip cantrips as they are handled above
+
+            const { spells, slots } = selectedMonster.spellsByLevel[level];
+            if (spells.length > 0) {
+                // Create a row for the spell level
+                const levelRow = document.createElement('tr');
+                const levelCell = document.createElement('td');
+                levelCell.colSpan = 3; // Span across all columns for the level header
+                levelCell.textContent = `Level ${level} (${slots} slots)`;
+                levelRow.appendChild(levelCell);
+                monsterSpellTableBody.appendChild(levelRow);
+
+                // Create rows for each spell at this level
+                for (let i = 0; i < spells.length; i += 3) {
+                    const spellRow = document.createElement('tr');
+
+                    for (let j = 0; j < 3 && i + j < spells.length; j++) {
+                        const spellEntry = spells[i + j];
+                        const spellId = spellEntry.id;
+
+                        if (processedSpellIds.has(spellId)) {
+                            continue;
+                        }
+
+                        const spell = spellsData.find(spell => spell.id === spellId);
+
+                        const nameCell = document.createElement('td');
+                        nameCell.textContent = spell ? spell.name : 'Unknown Spell';
+                        spellRow.appendChild(nameCell);
+                        processedSpellIds.add(spellId);
+                    }
+
+                    monsterSpellTableBody.appendChild(spellRow);
+                }
+            }
         });
     }
 }
@@ -216,7 +277,7 @@ function addMonsterToPlayerTable(monsterName) {
 
         cell.addEventListener('click', () => {
             displaySelectedMonster(selectedMonster.name);
-            displaySelectedMonsterSpells(selectedMonster.name);
+            displaySelectedMonsterSpells(selectedMonster.name, window.spellsData);
         });
 
         monsterRow.appendChild(cell);
@@ -227,14 +288,14 @@ function addMonsterToPlayerTable(monsterName) {
         monsterRow.appendChild(cell);
 
         // Current Health column
-        const CurrentHealthCell = document.createElement('td');
+        const currentHealthCell = document.createElement('td');
         selectedMonster.CurrentHealth = parseInt(selectedMonster.hp, 10); // Initialize CurrentHealth to max health
         if (isNaN(selectedMonster.CurrentHealth)) {
             selectedMonster.CurrentHealth = 0; // Fallback to 0 if initialization fails
         }
         console.log('CurrentHealth initialized to:', selectedMonster.CurrentHealth);
-        CurrentHealthCell.textContent = selectedMonster.CurrentHealth;
-        monsterRow.appendChild(CurrentHealthCell);
+        currentHealthCell.textContent = selectedMonster.CurrentHealth;
+        monsterRow.appendChild(currentHealthCell);
 
         cell = document.createElement('td');
 
@@ -246,13 +307,13 @@ function addMonsterToPlayerTable(monsterName) {
         const healButton = document.createElement('button');
         healButton.textContent = 'Heal';
         healButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput?.value) || 0;
+            const value = parseInt(actionInput.value) || 0;
             try {
                 console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
         
                 const updatedEntity = await window.api.applyHealing(selectedMonster, value);
                 selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
-                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
+                currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after healing
             } catch (error) {
                 console.error('Error applying healing:', error);
@@ -262,13 +323,13 @@ function addMonsterToPlayerTable(monsterName) {
         const damageButton = document.createElement('button');
         damageButton.textContent = 'Damage';
         damageButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput?.value) || 0;
+            const value = parseInt(actionInput.value) || 0;
             try {
                 console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
 
                 const updatedEntity = await window.api.applyDamage(selectedMonster, value);
                 selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
-                CurrentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
+                currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after damaging
             } catch (error) {
                 console.error('Error applying damage:', error);
@@ -297,3 +358,16 @@ document.getElementById('add-monster').addEventListener('click', () => {
     const selectedMonsterName = document.getElementById('monsters-dropdown').value;
     addMonsterToPlayerTable(selectedMonsterName);
 });
+
+// Load spells data
+async function loadSpells() {
+    try {
+        const spells = await window.api.getSpells();
+        console.log('Spells:', spells);
+
+        // Store spells globally
+        window.spellsData = spells;
+    } catch (error) {
+        console.error('Error fetching spells:', error);
+    }
+}

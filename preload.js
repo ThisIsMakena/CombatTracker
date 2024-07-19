@@ -24,6 +24,7 @@ contextBridge.exposeInMainWorld('api', {
     applyDamage: (player, amount) => ipcRenderer.invoke('apply-damage', player, amount),
     rollDie: (sides) => ipcRenderer.invoke('roll-die', sides),
     getMonsters: () => ipcRenderer.invoke('get-monsters'),
+    getSpells: () => ipcRenderer.invoke('get-spells'),
     computeAttackValue: (attackValue) => ipcRenderer.invoke('compute-attack-values', attackValue)
     
 });

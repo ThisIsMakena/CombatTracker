@@ -8,7 +8,6 @@ async function applyHealing(entity, amount) {
             }
             entity.CurrentHealth = Math.min(entity.CurrentHealth + amount, entity.hp); // Use min to cap at max health
             entity.CurrentHealth = parseInt(entity.CurrentHealth, 10); // Ensure CurrentHealth is an integer
-            console.log(entity.Health)
             resolve(entity); 
         } catch (error) {
             reject(error);
