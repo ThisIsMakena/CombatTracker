@@ -148,7 +148,6 @@ async function loadMonsters() {
 document.addEventListener('DOMContentLoaded', () => {
     loadMonsters();
     loadSpells();
-
     const monstersDropdown = document.getElementById('monsters-dropdown');
     if (monstersDropdown) {
         monstersDropdown.addEventListener('change', (event) => {
@@ -252,12 +251,18 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
                 const spellName = document.createElement('div');
                 spellName.textContent = spell.Name;
                 containerDiv.appendChild(spellName);
+                containerDiv.appendChild(document.createElement('br'));
+                const spellSave = document.createElement('div');
+                spellSave.textContent = spell.Save;
+                containerDiv.appendChild(spellSave);
                 const spellButton = document.createElement('button');
                 spellButton.textContent = 'Cast Spell';
+
                 spellButton.addEventListener('click', () => {
                     // pew pew cantrips eventually
                     console.log(`Casting spell: ${spell.Name}`);
                 });
+
                 containerDiv.appendChild(spellButton);
                 cantripCell.appendChild(containerDiv);
                 cantripRow.appendChild(cantripCell);
@@ -287,8 +292,13 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
                     const spellName = document.createElement('div');
                     spellName.textContent = spell.Name;
                     containerDiv.appendChild(spellName);
+                    containerDiv.appendChild(document.createElement('br'));
+                    const spellSave = document.createElement('div');
+                    spellSave.textContent = spell.Save;
+                    containerDiv.appendChild(spellSave);
                     const spellButton = document.createElement('button');
                     spellButton.textContent = 'Cast Spell';
+
                     spellButton.addEventListener('click', () => {
                         // I'm sure this won't be hard to work out
                         console.log(`Casting spell: ${spell.Name}`);
@@ -405,10 +415,51 @@ async function loadSpells() {
     try {
         const spells = await window.api.getSpells();
         console.log('Spells:', spells);
-        
+
         // Store spells globally
         window.spellsData = spells;
+
+        // Extract spell details for each spell
+        spells.forEach(spell => {
+            const details = extractSpellDetails(spell.Details);
+            console.log(`Details for ${spell.name}:`, details);
+        });
     } catch (error) {
         console.error('Error fetching spells:', error);
     }
 }
+
+
+
+function extractSpellDetails(spellDescription) {
+    const dicePattern = /\b(\d+d\d+)\b/g;
+    const damagePattern = /\b(\d+d\d+)\s+(\w+\s+damage)\b/g;
+    const levelPattern = /\b(\d+(?:st|nd|rd|th)\s+level)\s+(\d+d\d+)\b/g;
+
+    let matches = {
+        dice: [],
+        damage: [],
+        levelScaling: []
+    };
+
+    // Match level scaling details
+    let levelMatch;
+    while ((levelMatch = levelPattern.exec(spellDescription)) !== null) {
+        matches.levelScaling.push(`${levelMatch[1]} ${levelMatch[2]}`);
+    }
+
+    // Match damage details
+    let damageMatch;
+    while ((damageMatch = damagePattern.exec(spellDescription)) !== null) {
+        matches.damage.push(`${damageMatch[1]} ${damageMatch[2]}`);
+    }
+
+    // Match dice details
+    let diceMatch;
+    while ((diceMatch = dicePattern.exec(spellDescription)) !== null) {
+        matches.dice.push(diceMatch[1]);
+    }
+
+    return matches;
+}
+

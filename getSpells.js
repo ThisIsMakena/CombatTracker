@@ -20,6 +20,7 @@ function getSpells(callback) {
             records = records.map(record => {
                 record.id = record.spellId;
                 record.name = record.Name;
+                record.details = record.Details;
                 return record;
             });
             callback(null, records);
