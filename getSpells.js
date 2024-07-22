@@ -1,6 +1,37 @@
 //getSpells.js
 
 const fs = require('fs');
+const path = require('path');
+const { parse } = require('csv-parse');
+
+function getSpells(callback) {
+    const filePath = path.join(__dirname, 'spellList.csv');
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            callback(err, null);
+            return;
+        }
+        parse(data, { columns: true, trim: true }, (err, records) => {
+            if (err) {
+                callback(err, null);
+                return;
+            }
+            // Ensure Health and CurrentHealth are integers
+            records = records.map(record => {
+                record.id = record.spellId;
+                record.name = record.Name;
+                return record;
+            });
+            callback(null, records);
+        });
+    });
+}
+
+module.exports = { getSpells };
+
+
+/*
+const fs = require('fs');
 const xml2js = require('xml2js');
 const parser = new xml2js.Parser();
 
@@ -46,3 +77,4 @@ function getSpells(callback) {
 }
 
 module.exports = { getSpells };
+*/

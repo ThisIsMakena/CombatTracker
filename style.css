@@ -41,3 +41,8 @@ th {
 tr.selected {
     background-color: yellow;
   }
+
+  .spell-heading {
+    font-weight: bold;
+    text-align: left;
+}

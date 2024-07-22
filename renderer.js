@@ -234,26 +234,36 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     // Display Cantrips if they exist
     const cantrips = selectedMonster.spellsByLevel.find(spellLevel => spellLevel.level === 'cantrips');
     if (cantrips && cantrips.spells.length > 0) {
-        const cantripRow = document.createElement('tr');
-        const cantripCell = document.createElement('td');
-        cantripCell.textContent = 'Cantrips';
-        cantripRow.appendChild(cantripCell);
-        monsterSpellTableBody.appendChild(cantripRow);
+        const cantripLabelRow = document.createElement('tr');
+        const cantripLabelCell = document.createElement('td');
+        cantripLabelCell.colSpan = 2; // Span across two columns
+        cantripLabelCell.textContent = 'Cantrips';
+        cantripLabelCell.classList.add('spell-heading');
+        cantripLabelRow.appendChild(cantripLabelCell);
+        monsterSpellTableBody.appendChild(cantripLabelRow);
 
+        const cantripRow = document.createElement('tr');
         cantrips.spells.forEach(spellId => {
             const spell = spellsData.find(spell => spell.id === spellId);
             if (spell) {
-                    processedSpellIds.add(spellId);
-                    const row = document.createElement('tr');
-                    const nameCell = document.createElement('td'); 
-                    nameCell.textContent = spell.name;
-                    row.appendChild(nameCell);
-                    const textCell = document.createElement('td'); 
-                    textCell.textContent = spell.text;
-                    row.appendChild(textCell);
-                    monsterSpellTableBody.appendChild(row);
-                }
+                processedSpellIds.add(spellId);
+                const cantripCell = document.createElement('td');
+                const containerDiv = document.createElement('div');
+                const spellName = document.createElement('div');
+                spellName.textContent = spell.Name;
+                containerDiv.appendChild(spellName);
+                const spellButton = document.createElement('button');
+                spellButton.textContent = 'Cast Spell';
+                spellButton.addEventListener('click', () => {
+                    // pew pew cantrips eventually
+                    console.log(`Casting spell: ${spell.Name}`);
+                });
+                containerDiv.appendChild(spellButton);
+                cantripCell.appendChild(containerDiv);
+                cantripRow.appendChild(cantripCell);
+            }
         });
+        monsterSpellTableBody.appendChild(cantripRow);
     }
 
     // Display spells for each level
@@ -261,24 +271,35 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         if (spellLevel.level !== 'cantrips') {
             const levelRow = document.createElement('tr');
             const levelCell = document.createElement('td');
+            levelCell.colSpan = 2; // Span across two columns
             levelCell.textContent = `Level ${spellLevel.level}`;
+            levelCell.classList.add('spell-heading');
             levelRow.appendChild(levelCell);
             monsterSpellTableBody.appendChild(levelRow);
-    
+
+            const spellRow = document.createElement('tr');
             spellLevel.spells.forEach(spellId => {
                 const spell = spellsData.find(spell => spell.id === spellId);
                 if (spell && !processedSpellIds.has(spellId)) {
                     processedSpellIds.add(spellId);
-                    const row = document.createElement('tr');
-                    const nameCell = document.createElement('td'); 
-                    nameCell.textContent = spell.name;
-                    row.appendChild(nameCell);
-                    const textCell = document.createElement('td'); 
-                    textCell.textContent = spell.text;
-                    row.appendChild(textCell);
-                    monsterSpellTableBody.appendChild(row);
+                    const spellCell = document.createElement('td');
+                    const containerDiv = document.createElement('div');
+                    const spellName = document.createElement('div');
+                    spellName.textContent = spell.Name;
+                    containerDiv.appendChild(spellName);
+                    const spellButton = document.createElement('button');
+                    spellButton.textContent = 'Cast Spell';
+                    spellButton.addEventListener('click', () => {
+                        // I'm sure this won't be hard to work out
+                        console.log(`Casting spell: ${spell.Name}`);
+                    });
+
+                    containerDiv.appendChild(spellButton);
+                    spellCell.appendChild(containerDiv);
+                    spellRow.appendChild(spellCell);
                 }
             });
+            monsterSpellTableBody.appendChild(spellRow);
         }
     });
 }
@@ -384,7 +405,7 @@ async function loadSpells() {
     try {
         const spells = await window.api.getSpells();
         console.log('Spells:', spells);
-
+        
         // Store spells globally
         window.spellsData = spells;
     } catch (error) {
