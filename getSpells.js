@@ -21,6 +21,7 @@ function getSpells(callback) {
                 record.id = record.spellId;
                 record.name = record.Name;
                 record.details = record.Details;
+                record.damage = record.Damage
                 return record;
             });
             callback(null, records);
@@ -30,7 +31,7 @@ function getSpells(callback) {
 
 module.exports = { getSpells };
 
-
+//Old version from XML
 /*
 const fs = require('fs');
 const xml2js = require('xml2js');

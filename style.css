@@ -38,11 +38,12 @@ th {
     text-align: center; 
 }
 
-tr.selected {
-    background-color: yellow;
-  }
-
-  .spell-heading {
+.spell-heading {
     font-weight: bold;
     text-align: left;
+}
+
+
+.action-name {
+    font-weight: bold;       /* Makes the text bold */
 }

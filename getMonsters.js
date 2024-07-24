@@ -85,14 +85,35 @@ function getMonsters(callback) {
                             }
                         });
                     }
+
                     // Extract actions
                     if (monster.action) {
                         monster.action.forEach(action => {
                             if (action.name && action.text) {
-                                actions.push({
+                                const actionText = action.text[0];
+                
+                                // Extract action details
+                                const typeMatch = actionText.match(/<i>(.*?)<\/i>/i);
+                                const toHitMatch = actionText.match(/\+[\d-]+/);
+                                const reachMatch = actionText.match(/reach (\d+ ft\.)/);
+                                const rangeMatch = actionText.match(/range (\d+\/\d+ ft\.)/);
+                                const targetsMatch = actionText.match(/one target/);
+                                const damageMatch = actionText.match(/(\d+) \((\d+d\d+ [\+\-] \d+)\) ([a-zA-Z]+) damage/);
+                                const altDamageMatch = actionText.match(/, or (\d+) \((\d+d\d+ [\+\-] \d+)\) ([a-zA-Z]+) damage if used with two hands/);
+                
+                                const actionDetails = {
                                     name: action.name[0],
-                                    text: action.text[0]
-                                });
+                                    type: typeMatch ? typeMatch[1] : '',
+                                    toHit: toHitMatch ? toHitMatch[0] : '',
+                                    reach: reachMatch ? reachMatch[1] : '',
+                                    range: rangeMatch ? rangeMatch[1] : '',
+                                    targets: targetsMatch ? targetsMatch[0] : '',
+                                    damage: damageMatch ? `${damageMatch[1]} (${damageMatch[2]}) ${damageMatch[3]} damage` : '',
+                                    altDamage: altDamageMatch ? `${altDamageMatch[1]} (${altDamageMatch[2]}) ${altDamageMatch[3]} damage if used with two hands` : '',
+                                    info: actionText.replace(/<[^>]+>/g, '') // Strip HTML tags for additional info
+                                };
+                
+                                actions.push(actionDetails);
                             }
                         });
                     }

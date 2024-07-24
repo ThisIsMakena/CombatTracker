@@ -179,7 +179,13 @@ function displaySelectedMonster(monsterName) {
 // Function to display spells, traits, and actions of the selected monster
 function displaySelectedMonsterSpells(monsterName, spellsData) {
     const monsterSpellTable = document.getElementById('monsterSpellTable');
-    monsterSpellTable.innerHTML = ''; // Clear existing content
+    const monsterTraitTable = document.getElementById('monsterTraitTable');
+    const monsterActionTable = document.getElementById('monsterActionTable');
+
+    // Clear existing content
+    monsterSpellTable.innerHTML = '';
+    monsterTraitTable.innerHTML = '';
+    monsterActionTable.innerHTML = '';
 
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
     if (!selectedMonster) return;
@@ -188,7 +194,7 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     if (selectedMonster.traits && selectedMonster.traits.length > 0) {
         const traitsHeader = document.createElement('h3');
         traitsHeader.textContent = 'Traits';
-        monsterSpellTable.appendChild(traitsHeader);
+        monsterTraitTable.appendChild(traitsHeader);
 
         selectedMonster.traits.forEach(trait => {
             const traitDiv = document.createElement('div');
@@ -198,7 +204,7 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
             traitText.textContent = trait.text;
             traitDiv.appendChild(traitName);
             traitDiv.appendChild(traitText);
-            monsterSpellTable.appendChild(traitDiv);
+            monsterTraitTable.appendChild(traitDiv);
         });
     }
 
@@ -206,20 +212,68 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     if (selectedMonster.action && selectedMonster.action.length > 0) {
         const actionsHeader = document.createElement('h3');
         actionsHeader.textContent = 'Actions';
-        monsterSpellTable.appendChild(actionsHeader);
-
+        monsterActionTable.appendChild(actionsHeader);
+    
         selectedMonster.action.forEach(action => {
             const actionDiv = document.createElement('div');
-            const actionName = document.createElement('strong');
-            actionName.textContent = action.name;
-            const actionText = document.createElement('p');
-            actionText.textContent = action.text;
+            const actionName = document.createElement('div');
+            actionName.classList.add('action-name'); // Adds div id for css
+            actionName.textContent = `Name: ${action.name}`;
             actionDiv.appendChild(actionName);
-            actionDiv.appendChild(actionText);
-            monsterSpellTable.appendChild(actionDiv);
+    
+            if (action.type) {
+                const actionType = document.createElement('div');
+                actionType.textContent = `Type: ${action.type}`;
+                actionDiv.appendChild(actionType);
+            }
+    
+            if (action.toHit) {
+                const actionToHit = document.createElement('div');
+                actionToHit.textContent = `To Hit: ${action.toHit}`;
+                actionDiv.appendChild(actionToHit);
+            }
+    
+            if (action.reach) {
+                const actionReach = document.createElement('div');
+                actionReach.textContent = `Reach: ${action.reach}`;
+                actionDiv.appendChild(actionReach);
+            }
+    
+            if (action.range) {
+                const actionRange = document.createElement('div');
+                actionRange.textContent = `Range: ${action.range}`;
+                actionDiv.appendChild(actionRange);
+            }
+    
+            if (action.targets) {
+                const actionTargets = document.createElement('div');
+                actionTargets.textContent = `Targets: ${action.targets}`;
+                actionDiv.appendChild(actionTargets);
+            }
+    
+            if (action.damage) {
+                const actionDamage = document.createElement('div');
+                actionDamage.textContent = `Damage: ${action.damage}`;
+                actionDiv.appendChild(actionDamage);
+            }
+    
+            if (action.altDamage) {
+                const actionAltDamage = document.createElement('div');
+                actionAltDamage.textContent = `Alternative Damage: ${action.altDamage}`;
+                actionDiv.appendChild(actionAltDamage);
+            }
+    
+            if (action.info) {
+                const actionInfo = document.createElement('div');
+                actionInfo.textContent = `Additional Info: ${action.info}`;
+                actionDiv.appendChild(actionInfo);
+            }
+            const separator = document.createElement('p');
+        separator.textContent = ''; // Empty paragraph for spacing
+        monsterActionTable.appendChild(separator);
+            monsterActionTable.appendChild(actionDiv);
         });
     }
-
     // Display Spells
     const spellsHeader = document.createElement('h3');
     spellsHeader.textContent = 'Spells';
@@ -230,90 +284,98 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
 
     const processedSpellIds = new Set();
 
-    // Display Cantrips if they exist
-    const cantrips = selectedMonster.spellsByLevel.find(spellLevel => spellLevel.level === 'cantrips');
-    if (cantrips && cantrips.spells.length > 0) {
-        const cantripLabelRow = document.createElement('tr');
-        const cantripLabelCell = document.createElement('td');
-        cantripLabelCell.colSpan = 2; // Span across two columns
-        cantripLabelCell.textContent = 'Cantrips';
-        cantripLabelCell.classList.add('spell-heading');
-        cantripLabelRow.appendChild(cantripLabelCell);
-        monsterSpellTableBody.appendChild(cantripLabelRow);
+    selectedMonster.spellsByLevel.forEach(spellLevel => {
+        const isCantrip = spellLevel.level === 'cantrips';
+        const level = isCantrip ? 0 : spellLevel.level;
 
-        const cantripRow = document.createElement('tr');
-        cantrips.spells.forEach(spellId => {
+        // Create the label row
+        const labelRow = document.createElement('tr');
+        const labelCell = document.createElement('td');
+        labelCell.colSpan = 8; // Span across eight columns
+        labelCell.textContent = isCantrip ? 'Cantrips' : `Level ${level}`;
+        labelCell.classList.add('spell-heading');
+        labelRow.appendChild(labelCell);
+        monsterSpellTableBody.appendChild(labelRow);
+
+        // Create the spell row
+        const spellRow = document.createElement('tr');
+        spellLevel.spells.forEach(spellId => {
             const spell = spellsData.find(spell => spell.id === spellId);
-            if (spell) {
+            if (spell && !processedSpellIds.has(spellId)) {
                 processedSpellIds.add(spellId);
-                const cantripCell = document.createElement('td');
+
+                const spellCell = document.createElement('td');
                 const containerDiv = document.createElement('div');
+
+                // Create and append the spell name
                 const spellName = document.createElement('div');
                 spellName.textContent = spell.Name;
                 containerDiv.appendChild(spellName);
                 containerDiv.appendChild(document.createElement('br'));
+
+                // Create and append the spell save
                 const spellSave = document.createElement('div');
                 spellSave.textContent = spell.Save;
                 containerDiv.appendChild(spellSave);
-                const spellButton = document.createElement('button');
-                spellButton.textContent = 'Cast Spell';
+                containerDiv.appendChild(document.createElement('br'));
 
-                spellButton.addEventListener('click', () => {
-                    // pew pew cantrips eventually
-                    console.log(`Casting spell: ${spell.Name}`);
-                });
-
-                containerDiv.appendChild(spellButton);
-                cantripCell.appendChild(containerDiv);
-                cantripRow.appendChild(cantripCell);
+                // Create and append the button element
+                if (spell.damage) {
+                    const spellButton = document.createElement('button');
+                    spellButton.textContent = `Cast ${spell.damage}`;
+                    spellButton.addEventListener('click', async () => {
+                        const results = await evaluateDamage(spell.damage);
+                        results.forEach(result => {
+                            console.log(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
+                        });
+                    });
+                    containerDiv.appendChild(spellButton);
+                }
+            
+                spellCell.appendChild(containerDiv);
+                spellRow.appendChild(spellCell);
             }
         });
-        monsterSpellTableBody.appendChild(cantripRow);
-    }
-
-    // Display spells for each level
-    selectedMonster.spellsByLevel.forEach(spellLevel => {
-        if (spellLevel.level !== 'cantrips') {
-            const levelRow = document.createElement('tr');
-            const levelCell = document.createElement('td');
-            levelCell.colSpan = 2; // Span across two columns
-            levelCell.textContent = `Level ${spellLevel.level}`;
-            levelCell.classList.add('spell-heading');
-            levelRow.appendChild(levelCell);
-            monsterSpellTableBody.appendChild(levelRow);
-
-            const spellRow = document.createElement('tr');
-            spellLevel.spells.forEach(spellId => {
-                const spell = spellsData.find(spell => spell.id === spellId);
-                if (spell && !processedSpellIds.has(spellId)) {
-                    processedSpellIds.add(spellId);
-                    const spellCell = document.createElement('td');
-                    const containerDiv = document.createElement('div');
-                    const spellName = document.createElement('div');
-                    spellName.textContent = spell.Name;
-                    containerDiv.appendChild(spellName);
-                    containerDiv.appendChild(document.createElement('br'));
-                    const spellSave = document.createElement('div');
-                    spellSave.textContent = spell.Save;
-                    containerDiv.appendChild(spellSave);
-                    const spellButton = document.createElement('button');
-                    spellButton.textContent = 'Cast Spell';
-
-                    spellButton.addEventListener('click', () => {
-                        // I'm sure this won't be hard to work out
-                        console.log(`Casting spell: ${spell.Name}`);
-                    });
-
-                    containerDiv.appendChild(spellButton);
-                    spellCell.appendChild(containerDiv);
-                    spellRow.appendChild(spellCell);
-                }
-            });
-            monsterSpellTableBody.appendChild(spellRow);
-        }
+        monsterSpellTableBody.appendChild(spellRow);
     });
 }
 
+//spell damage got more complicated lel
+
+async function evaluateDamage(damageStr) {
+    const parts = damageStr.split('|').map(part => part.trim());
+    let results = [];
+
+    for (const part of parts) {
+        // Check for a + modifier
+        const [dicePart, modifierPart] = part.split('+').map(str => str.trim());
+
+        // Roll the dice part
+        if (dicePart.includes('d')) {
+            const [diceCount, diceSides] = dicePart.split('d').map(Number);
+            let totalDamage = 0;
+            for (let i = 0; i < diceCount; i++) {
+                const damage = await window.api.rollDie(diceSides);
+                totalDamage += damage;
+            }
+
+            // Add the modifier if it exists
+            if (modifierPart) {
+                totalDamage += parseInt(modifierPart, 10);
+            }
+
+            results.push({ part, totalDamage });
+        } else {
+            const totalDamage = parseInt(dicePart, 10);
+            if (modifierPart) {
+                totalDamage += parseInt(modifierPart, 10);
+            }
+            results.push({ part, totalDamage });
+        }
+    }
+
+    return results;
+}
 
 // Function to add the selected monster to the player table
 function addMonsterToPlayerTable(monsterName) {
@@ -415,51 +477,9 @@ async function loadSpells() {
     try {
         const spells = await window.api.getSpells();
         console.log('Spells:', spells);
-
-        // Store spells globally
         window.spellsData = spells;
-
-        // Extract spell details for each spell
-        spells.forEach(spell => {
-            const details = extractSpellDetails(spell.Details);
-            console.log(`Details for ${spell.name}:`, details);
-        });
     } catch (error) {
         console.error('Error fetching spells:', error);
     }
-}
-
-
-
-function extractSpellDetails(spellDescription) {
-    const dicePattern = /\b(\d+d\d+)\b/g;
-    const damagePattern = /\b(\d+d\d+)\s+(\w+\s+damage)\b/g;
-    const levelPattern = /\b(\d+(?:st|nd|rd|th)\s+level)\s+(\d+d\d+)\b/g;
-
-    let matches = {
-        dice: [],
-        damage: [],
-        levelScaling: []
-    };
-
-    // Match level scaling details
-    let levelMatch;
-    while ((levelMatch = levelPattern.exec(spellDescription)) !== null) {
-        matches.levelScaling.push(`${levelMatch[1]} ${levelMatch[2]}`);
-    }
-
-    // Match damage details
-    let damageMatch;
-    while ((damageMatch = damagePattern.exec(spellDescription)) !== null) {
-        matches.damage.push(`${damageMatch[1]} ${damageMatch[2]}`);
-    }
-
-    // Match dice details
-    let diceMatch;
-    while ((diceMatch = dicePattern.exec(spellDescription)) !== null) {
-        matches.dice.push(diceMatch[1]);
-    }
-
-    return matches;
 }
 
