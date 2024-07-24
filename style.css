@@ -19,10 +19,47 @@ li {
     border: 1px solid #ddd;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
+        #playerTable {
+            width: 800px;
+            border-collapse: collapse;
+        }
+
+        #monsterTable {
+            width: 1200px;
+            border-collapse: collapse;
+        }
+
+        #monsterTraitTable {
+            width: 1200px;
+            border-collapse: collapse;
+        }
+
+        #monsterActionTable {
+            width: 1200px;
+            border-collapse: collapse;
+        }
+
+        #monsterSpellTable {
+            width: 1200px;
+            border-collapse: collapse;
+        }
+
+
+        #eventHistoryTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #eventHistoryTable th,
+        #eventHistoryTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #eventHistoryTable th {
+            background-color: #f4f4f4;
+        }
 
 th, td {
     border: 1px solid black;
@@ -43,7 +80,23 @@ th {
     text-align: left;
 }
 
-
 .action-name {
-    font-weight: bold;       /* Makes the text bold */
+    font-weight: bold;      
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+
+.tables {
+    flex: 3;
+    margin-right: 20px;
+}
+
+.event-history {
+    flex: 1;
+    max-width: 300px; /* Adjust width as needed */
 }

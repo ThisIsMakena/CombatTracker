@@ -25,6 +25,9 @@ function getMonsters(callback) {
                     let spellsByLevel = [];
                     let traits = [];
                     let actions = [];
+                    let spellcastingAbility = '';
+                    let spellSaveDC = '';
+                    let spellAttackBonus = '';
 
                     // Check if the monster has spellcasting traits
                     if (monster.trait) {
@@ -34,6 +37,24 @@ function getMonsters(callback) {
 
                                 // Remove all asterisks and preprocess the text
                                 const cleanedSpellcastingDesc = spellcastingDesc.replace(/\*\s*/g, '');
+
+                                // Extract spellcasting ability
+                                const abilityMatch = cleanedSpellcastingDesc.match(/(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) as the spellcasting ability|its spellcasting ability is (Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)/i);
+                                if (abilityMatch) {
+                                    spellcastingAbility = abilityMatch[1] || abilityMatch[2] || '';
+                                }
+
+                                // Extract Spell Save DC
+                                const saveDCMatch = cleanedSpellcastingDesc.match(/spell save DC (\d+)/i);
+                                if (saveDCMatch) {
+                                    spellSaveDC = saveDCMatch[1] || '';
+                                }
+
+                                // Extract Spell Attack Bonus
+                                const attackBonusMatch = cleanedSpellcastingDesc.match(/\+(\d+) to hit with spell attacks/i);
+                                if (attackBonusMatch) {
+                                    spellAttackBonus = attackBonusMatch[1] || '';
+                                }
 
                                 // Extract cantrips
                                 const cantripRegex = /Cantrips \(at will\):\s*((?:<a href="\/spell\/([^"]+)">[^<]+<\/a>(?:,\s*)?)*)/i;
@@ -129,8 +150,11 @@ function getMonsters(callback) {
                         cr: parseFloat((monster.cr && monster.cr[0]) || 0),
                         alignment: (monster.alignment && monster.alignment[0]) || '',
                         spellcasting: spellcastingDesc,
-                        spellsByLevel: spellsByLevel,  // Store spells grouped by level
-                        traits: traits,  // Store traits
+                        spellcastingAbility: spellcastingAbility, // Add spellcasting ability
+                        spellSaveDC: spellSaveDC,               // Add spell save DC
+                        spellAttackBonus: spellAttackBonus,     // Add spell attack bonus
+                        spellsByLevel: spellsByLevel,           // Store spells grouped by level
+                        traits: traits,                        // Store traits
                         action: actions //actions
                     };
                 });

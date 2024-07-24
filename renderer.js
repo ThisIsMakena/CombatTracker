@@ -5,64 +5,72 @@ window.api.onInitPlayers((players) => {
 
     players.forEach(player => {
         const row = document.createElement('tr');
-
+    
         // Players column
         let cell = document.createElement('td');
         cell.textContent = player.Players; // Ensure correct property name
         row.appendChild(cell);
-
+    
         // Max Health column
         cell = document.createElement('td');
         cell.textContent = player.Health;
         row.appendChild(cell);
-
+    
         // Current Health column
         const currentHealthCell = document.createElement('td');
-        player.CurrentHealth = player.Health; // Initialize CurrentHealth to max health
+        //player.CurrentHealth = parseInt(player.Health, 10); // Initialize as a number
         currentHealthCell.textContent = player.CurrentHealth;
         row.appendChild(currentHealthCell);
-
+    
         // Action column with text field and buttons
         cell = document.createElement('td');
-
+    
         const actionInput = document.createElement('input');
         actionInput.type = 'text';
         actionInput.value = '';
         actionInput.size = 4;
-
+    
         const healButton = document.createElement('button');
         healButton.textContent = 'Heal';
         healButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput.value) || 0;
+            const value = parseInt(actionInput.value, 10) || 0;
             try {
                 const updatedEntity = await window.api.applyHealing(player, value);
                 player.CurrentHealth = updatedEntity.CurrentHealth;
                 currentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after healing
+                console.log('Healing/Damage value:', value);
+                console.log('current health:', player.CurrentHealth);
+                console.log('current entity health:', updatedEntity.CurrentHealth);
+                addEventToHistory(`Healed ${player.Players} for ${value}. Current Health: ${player.CurrentHealth}`);
             } catch (error) {
                 console.error('Error applying healing:', error);
             }
         });
-
+    
         const damageButton = document.createElement('button');
         damageButton.textContent = 'Damage';
         damageButton.addEventListener('click', async () => {
-            const value = parseInt(actionInput.value) || 0;
+            const value = parseInt(actionInput.value, 10) || 0;
             try {
                 const updatedEntity = await window.api.applyDamage(player, value);
                 player.CurrentHealth = updatedEntity.CurrentHealth;
                 currentHealthCell.textContent = player.CurrentHealth;
                 actionInput.value = ''; // Clear the text field after damaging
+                console.log('Healing/Damage value:', value);
+                console.log('current health:', player.CurrentHealth);
+                console.log('current entity health:', updatedEntity.CurrentHealth);
+                addEventToHistory(`Damaged ${player.Players} for ${value}. Current Health: ${player.CurrentHealth}`);
             } catch (error) {
                 console.error('Error applying damage:', error);
             }
         });
-
+    
         cell.appendChild(actionInput);
         cell.appendChild(healButton);
         cell.appendChild(damageButton);
         row.appendChild(cell);
-
+    
         // Initiative column
         const initiativeCell = document.createElement('td');
         const initiativeInput = document.createElement('input');
@@ -71,9 +79,10 @@ window.api.onInitPlayers((players) => {
         initiativeInput.classList.add('initiative-input');
         initiativeCell.appendChild(initiativeInput);
         row.appendChild(initiativeCell);
-
+    
         playerTableBody.appendChild(row);
     });
+    
 });
 
 // Roll and sort initiative
@@ -91,6 +100,7 @@ document.getElementById('run-initiative').addEventListener('click', async () => 
                 initiativeInput.value = initiative;
             }
         }
+        addEventToHistory('Initiative Rolled');
     }
 
     const allRows = Array.from(playerTableBody.getElementsByTagName('tr')).filter(row => {
@@ -213,80 +223,128 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         const actionsHeader = document.createElement('h3');
         actionsHeader.textContent = 'Actions';
         monsterActionTable.appendChild(actionsHeader);
-    
+
         selectedMonster.action.forEach(action => {
             const actionDiv = document.createElement('div');
             const actionName = document.createElement('div');
             actionName.classList.add('action-name'); // Adds div id for css
             actionName.textContent = `Name: ${action.name}`;
             actionDiv.appendChild(actionName);
-    
+
             if (action.type) {
                 const actionType = document.createElement('div');
                 actionType.textContent = `Type: ${action.type}`;
                 actionDiv.appendChild(actionType);
             }
-    
+
             if (action.toHit) {
                 const actionToHit = document.createElement('div');
                 actionToHit.textContent = `To Hit: ${action.toHit}`;
                 actionDiv.appendChild(actionToHit);
             }
-    
+
             if (action.reach) {
                 const actionReach = document.createElement('div');
                 actionReach.textContent = `Reach: ${action.reach}`;
                 actionDiv.appendChild(actionReach);
             }
-    
+
             if (action.range) {
                 const actionRange = document.createElement('div');
                 actionRange.textContent = `Range: ${action.range}`;
                 actionDiv.appendChild(actionRange);
             }
-    
+
             if (action.targets) {
                 const actionTargets = document.createElement('div');
                 actionTargets.textContent = `Targets: ${action.targets}`;
                 actionDiv.appendChild(actionTargets);
             }
-    
+
             if (action.damage) {
                 const actionDamage = document.createElement('div');
                 actionDamage.textContent = `Damage: ${action.damage}`;
                 actionDiv.appendChild(actionDamage);
             }
-    
+
             if (action.altDamage) {
                 const actionAltDamage = document.createElement('div');
                 actionAltDamage.textContent = `Alternative Damage: ${action.altDamage}`;
                 actionDiv.appendChild(actionAltDamage);
             }
-    
+
             if (action.info) {
                 const actionInfo = document.createElement('div');
                 actionInfo.textContent = `Additional Info: ${action.info}`;
                 actionDiv.appendChild(actionInfo);
             }
             const separator = document.createElement('p');
-        separator.textContent = ''; // Empty paragraph for spacing
-        monsterActionTable.appendChild(separator);
+            separator.textContent = ''; // Empty paragraph for spacing
+            monsterActionTable.appendChild(separator);
             monsterActionTable.appendChild(actionDiv);
         });
     }
+
     // Display Spells
     const spellsHeader = document.createElement('h3');
     spellsHeader.textContent = 'Spells';
     monsterSpellTable.appendChild(spellsHeader);
 
+    const spellStats = document.createElement('div');
+    spellStats.innerHTML = `
+        Spellcasting Ability: ${selectedMonster.spellcastingAbility}<br>
+        Spell Save DC: ${selectedMonster.spellSaveDC}<br>
+        Spell Attack Bonus: ${selectedMonster.spellAttackBonus}<br>
+        <br>
+    `;
+    monsterSpellTable.appendChild(spellStats);
+
     const monsterSpellTableBody = document.createElement('tbody');
     monsterSpellTable.appendChild(monsterSpellTableBody);
 
-    const processedSpellIds = new Set();
+    // Group spells by level
+    const spellsByLevel = {};
 
     selectedMonster.spellsByLevel.forEach(spellLevel => {
         const isCantrip = spellLevel.level === 'cantrips';
-        const level = isCantrip ? 0 : spellLevel.level;
+        const level = isCantrip ? 0 : parseInt(spellLevel.level, 10);
+
+        if (!spellsByLevel[level]) {
+            spellsByLevel[level] = [];
+        }
+
+        spellLevel.spells.forEach(spellId => {
+            const spell = spellsData.find(spell => spell.id === spellId);
+            if (spell) {
+                spellsByLevel[level].push(spell);
+            }
+        });
+    });
+
+    // Include spells with damageScaling in higher levels
+    const maxLevel = Math.max(...Object.keys(spellsByLevel).map(Number), 0);
+
+    Object.keys(spellsByLevel).forEach(level => {
+        const spells = spellsByLevel[level];
+        spells.forEach(spell => {
+            if (spell.damageScaling) {
+                const scalingLevel = parseInt(level, 10);
+                for (let i = scalingLevel + 1; i <= maxLevel; i++) {
+                    if (!spellsByLevel[i]) {
+                        spellsByLevel[i] = [];
+                    }
+                    if (!spellsByLevel[i].find(scaledSpell => scaledSpell.id === spell.id)) {
+                        spellsByLevel[i].push(spell);
+                    }
+                }
+            }
+        });
+    });
+
+    // Render spells grouped by level
+    Object.keys(spellsByLevel).sort((a, b) => a - b).forEach(level => {
+        const levelSpells = spellsByLevel[level];
+        const isCantrip = level === '0';
 
         // Create the label row
         const labelRow = document.createElement('tr');
@@ -297,48 +355,58 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         labelRow.appendChild(labelCell);
         monsterSpellTableBody.appendChild(labelRow);
 
-        // Create the spell row
-        const spellRow = document.createElement('tr');
-        spellLevel.spells.forEach(spellId => {
-            const spell = spellsData.find(spell => spell.id === spellId);
-            if (spell && !processedSpellIds.has(spellId)) {
-                processedSpellIds.add(spellId);
+        // Create spell slots row
+        const slotsRow = document.createElement('tr');
+        const slotsCell = document.createElement('td');
+        slotsCell.colSpan = 8;
+        slotsCell.textContent = `slots 0/X`; // You can replace this with actual slot data
+        slotsRow.appendChild(slotsCell);
+        monsterSpellTableBody.appendChild(slotsRow);
 
-                const spellCell = document.createElement('td');
-                const containerDiv = document.createElement('div');
+        // Create spell details rows
+        levelSpells.forEach(spell => {
+            const spellRow = document.createElement('tr');
 
-                // Create and append the spell name
-                const spellName = document.createElement('div');
-                spellName.textContent = spell.Name;
-                containerDiv.appendChild(spellName);
-                containerDiv.appendChild(document.createElement('br'));
+            // Cast button
+            const castButtonCell = document.createElement('td');
+            const castButton = document.createElement('button');
+            castButton.textContent = `Cast ${spell.Name}`;
+            castButton.addEventListener('click', async () => {
+                const results = await evaluateDamage(spell.damage);
+                results.forEach(result => {
+                    console.log(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
+                    addEventToHistory(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
+                });
+            });
+            castButtonCell.appendChild(castButton);
+            spellRow.appendChild(castButtonCell);
 
-                // Create and append the spell save
-                const spellSave = document.createElement('div');
-                spellSave.textContent = spell.Save;
-                containerDiv.appendChild(spellSave);
-                containerDiv.appendChild(document.createElement('br'));
+            // Range
+            const rangeCell = document.createElement('td');
+            rangeCell.textContent = spell.Range;
+            spellRow.appendChild(rangeCell);
 
-                // Create and append the button element
-                if (spell.damage) {
-                    const spellButton = document.createElement('button');
-                    spellButton.textContent = `Cast ${spell.damage}`;
-                    spellButton.addEventListener('click', async () => {
-                        const results = await evaluateDamage(spell.damage);
-                        results.forEach(result => {
-                            console.log(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
-                        });
-                    });
-                    containerDiv.appendChild(spellButton);
-                }
-            
-                spellCell.appendChild(containerDiv);
-                spellRow.appendChild(spellCell);
-            }
+            // Spell Attack
+            const spellAttackCell = document.createElement('td');
+            spellAttackCell.textContent = selectedMonster.spellAttackBonus;
+            spellRow.appendChild(spellAttackCell);
+
+            // Spell DC
+            const spellDCCell = document.createElement('td');
+            spellDCCell.textContent = selectedMonster.spellSaveDC;
+            spellRow.appendChild(spellDCCell);
+
+            // Damage/Effect
+            const damageEffectCell = document.createElement('td');
+            damageEffectCell.textContent = spell.Damage;
+            spellRow.appendChild(damageEffectCell);
+
+            monsterSpellTableBody.appendChild(spellRow);
         });
-        monsterSpellTableBody.appendChild(spellRow);
     });
 }
+
+
 
 //spell damage got more complicated lel
 
@@ -422,12 +490,14 @@ function addMonsterToPlayerTable(monsterName) {
         healButton.addEventListener('click', async () => {
             const value = parseInt(actionInput.value) || 0;
             try {
-                console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
-        
                 const updatedEntity = await window.api.applyHealing(selectedMonster, value);
                 selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
                 currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after healing
+                addEventToHistory(`Current Health: ${selectedMonster.CurrentHealth}, Heal Amount: ${value}`);
+                
+                console.log('Healing/Damage value:', value);
+                console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
             } catch (error) {
                 console.error('Error applying healing:', error);
             }
@@ -438,12 +508,13 @@ function addMonsterToPlayerTable(monsterName) {
         damageButton.addEventListener('click', async () => {
             const value = parseInt(actionInput.value) || 0;
             try {
-                console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
-
                 const updatedEntity = await window.api.applyDamage(selectedMonster, value);
                 selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
                 currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
                 actionInput.value = ''; // Clear the text field after damaging
+                addEventToHistory(`Current Health: ${selectedMonster.CurrentHealth}, Damage Amount: ${value}`);
+                console.log('Healing/Damage value:', value);
+                console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
             } catch (error) {
                 console.error('Error applying damage:', error);
             }
@@ -481,5 +552,16 @@ async function loadSpells() {
     } catch (error) {
         console.error('Error fetching spells:', error);
     }
+}
+
+
+// Function to add a new event to the event history table
+function addEventToHistory(eventDescription) {
+    const eventHistoryBody = document.getElementById('eventHistoryBody');
+    const newRow = document.createElement('tr');
+    const newCell = document.createElement('td');
+    newCell.textContent = eventDescription;
+    newRow.appendChild(newCell);
+    eventHistoryBody.appendChild(newRow);
 }
 

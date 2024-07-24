@@ -6,68 +6,83 @@
 </head>
 <body>
     <h1>Combat Tracker</h1>
-    <table id="playerTable">
-        <thead>
-            <tr>
-                <th>Players</th>
-                <th>Max Health</th>
-                <th>Current Health</th>
-                <th>Action</th>
-                <th>Initiative</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <p>
-        <button id="run-initiative">Run Initiative</button>
-        <button id="clear-initiative">Clear Initiative</button>
-    </p>
-    <p>
-        <label for="monsters-dropdown">Select Monster:</label>
-        <select id="monsters-dropdown"></select>
-        <button id="add-monster">Add Monster</button>
-    </p>
-    <table id="monsterTable">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Health</th>
-                <th>AC</th>
-                <th>Challenge Rating</th>
-                <th>Alignment</th>
-                <th>Size</th>
-            </tr>
-        </thead>
-        <tbody id="monsterTableBody"></tbody>
-    </table>
-    <table id="monsterTraitTable">
-        <thead>
-            <tr>
-                <th>Traits</th> <!-- Add a header for the Traits table -->
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <table id="monsterActionTable">
-        <thead>
-            <tr>
-                <th>Actions</th> <!-- Add a header for the Actions table -->
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <table id="monsterSpellTable">
-        <thead>
-            <tr>
-                <th>Spells</th> <!-- Add a header for the Spells table -->
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="container">
+        <div class="tables">
+            <table id="playerTable">
+                <thead>
+                    <tr>
+                        <th>Players</th>
+                        <th>Max Health</th>
+                        <th>Current Health</th>
+                        <th>Action</th>
+                        <th>Initiative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <p>
+                <button id="run-initiative">Run Initiative</button>
+                <button id="clear-initiative">Clear Initiative</button>
+            </p>
+            <p>
+                <label for="monsters-dropdown">Select Monster:</label>
+                <select id="monsters-dropdown"></select>
+                <button id="add-monster">Add Monster</button>
+            </p>
+            <table id="monsterTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Health</th>
+                        <th>AC</th>
+                        <th>Challenge Rating</th>
+                        <th>Alignment</th>
+                        <th>Size</th>
+                    </tr>
+                </thead>
+                <tbody id="monsterTableBody"></tbody>
+            </table>
+            <table id="monsterTraitTable">
+                <thead>
+                    <tr>
+                        <th>Traits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table id="monsterActionTable">
+                <thead>
+                    <tr>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <table id="monsterSpellTable">
+                <thead>
+                    <tr>
+                        <th>Spells</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="event-history">
+            <table id="eventHistoryTable">
+                <thead>
+                    <tr>
+                        <th>Event History</th>
+                    </tr>
+                </thead>
+                <tbody id="eventHistoryBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
     <script src="renderer.js"></script>
 </body>
 </html>

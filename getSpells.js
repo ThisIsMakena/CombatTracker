@@ -21,7 +21,13 @@ function getSpells(callback) {
                 record.id = record.spellId;
                 record.name = record.Name;
                 record.details = record.Details;
-                record.damage = record.Damage
+                record.damage = record.Damage;
+                record.range = record.Range;
+                record.area = record.Area;
+                record.attack = record.Attack;
+                record.castingTime = record["Casting Time"];
+                record.damageScaling = record["Damage Scaling"];
+                record.damageEffect = record["Damage/Effect"];
                 return record;
             });
             callback(null, records);
