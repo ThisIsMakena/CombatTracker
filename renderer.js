@@ -308,15 +308,18 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     selectedMonster.spellsByLevel.forEach(spellLevel => {
         const isCantrip = spellLevel.level === 'cantrips';
         const level = isCantrip ? 0 : parseInt(spellLevel.level, 10);
-
+    
         if (!spellsByLevel[level]) {
-            spellsByLevel[level] = [];
+            spellsByLevel[level] = {
+                slots: { used: 0, total: isCantrip ? 0 : spellLevel.slots }, // Add slots info here
+                spells: [] // Initialize spells as an array
+            };
         }
-
+    
         spellLevel.spells.forEach(spellId => {
             const spell = spellsData.find(spell => spell.id === spellId);
             if (spell) {
-                spellsByLevel[level].push(spell);
+                spellsByLevel[level].spells.push(spell);
             }
         });
     });
@@ -325,88 +328,116 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     const maxLevel = Math.max(...Object.keys(spellsByLevel).map(Number), 0);
 
     Object.keys(spellsByLevel).forEach(level => {
-        const spells = spellsByLevel[level];
-        spells.forEach(spell => {
-            if (spell.damageScaling) {
-                const scalingLevel = parseInt(level, 10);
-                for (let i = scalingLevel + 1; i <= maxLevel; i++) {
-                    if (!spellsByLevel[i]) {
-                        spellsByLevel[i] = [];
-                    }
-                    if (!spellsByLevel[i].find(scaledSpell => scaledSpell.id === spell.id)) {
-                        spellsByLevel[i].push(spell);
+        const spells = spellsByLevel[level].spells; // Access the spells array
+
+        if (Array.isArray(spells)) {
+            spells.forEach(spell => {
+                if (spell.damageScaling) {
+                    const scalingLevel = parseInt(level, 10);
+                    for (let i = scalingLevel + 1; i <= maxLevel; i++) {
+                        if (!spellsByLevel[i]) {
+                            spellsByLevel[i] = { spells: [] }; // Initialize with spells array
+                        }
+                        if (!spellsByLevel[i].spells.find(scaledSpell => scaledSpell.id === spell.id)) {
+                            spellsByLevel[i].spells.push(spell);
+                        }
                     }
                 }
-            }
-        });
+            });
+        } else {
+            console.error(`Expected an array for level ${level}, but got ${typeof spells}`);
+        }
     });
 
     // Render spells grouped by level
     Object.keys(spellsByLevel).sort((a, b) => a - b).forEach(level => {
-        const levelSpells = spellsByLevel[level];
+        const levelInfo = spellsByLevel[level];
+        const levelSpells = levelInfo.spells;
         const isCantrip = level === '0';
-
-        // Create the label row
-        const labelRow = document.createElement('tr');
-        const labelCell = document.createElement('td');
-        labelCell.colSpan = 8; // Span across eight columns
-        labelCell.textContent = isCantrip ? 'Cantrips' : `Level ${level}`;
-        labelCell.classList.add('spell-heading');
-        labelRow.appendChild(labelCell);
-        monsterSpellTableBody.appendChild(labelRow);
-
-        // Create spell slots row
-        const slotsRow = document.createElement('tr');
+    
+        // Create the header row
+        const headerRow = document.createElement('tr');
+        const headerCell = document.createElement('td');
+        headerCell.colSpan = 3;
+        headerCell.textContent = isCantrip ? 'Cantrips' : `Level ${level}`;
+        headerCell.classList.add('spell-heading');
+    
+        // Create slots cell
         const slotsCell = document.createElement('td');
-        slotsCell.colSpan = 8;
-        slotsCell.textContent = `slots 0/X`; // You can replace this with actual slot data
-        slotsRow.appendChild(slotsCell);
-        monsterSpellTableBody.appendChild(slotsRow);
-
-        // Create spell details rows
+        const { used: usedSlots, total: totalSlots } = levelInfo.slots;
+    
+        slotsCell.innerHTML = `
+            <div id="slots-${level}" class="slots-info">
+                <div class="slots-info-text">slots ${usedSlots}/${totalSlots}</div>
+                <div class="slots-container">${createSlotsHtml(usedSlots, totalSlots).outerHTML}</div>
+            </div>
+        `;
+        slotsCell.classList.add('slots-info');
+        headerRow.appendChild(headerCell);
+        headerRow.appendChild(slotsCell);
+        monsterSpellTableBody.appendChild(headerRow);
+    
+        // Create spell rows
         levelSpells.forEach(spell => {
             const spellRow = document.createElement('tr');
-
+    
+            // Add spell details (name, range, etc.)
+            const nameCell = document.createElement('td');
+            nameCell.textContent = spell.Name;
+            spellRow.appendChild(nameCell);
+    
+            const rangeCell = document.createElement('td');
+            rangeCell.textContent = spell.Range;
+            spellRow.appendChild(rangeCell);
+    /*
+            const attackCell = document.createElement('td');
+            attackCell.textContent = selectedMonster.spellAttackBonus;
+            spellRow.appendChild(attackCell);
+    
+            const dcCell = document.createElement('td');
+            dcCell.textContent = selectedMonster.spellSaveDC;
+            spellRow.appendChild(dcCell);
+    */
+            const effectCell = document.createElement('td');
+            effectCell.textContent = spell.damageEffect;
+            spellRow.appendChild(effectCell);
+    
             // Cast button
             const castButtonCell = document.createElement('td');
             const castButton = document.createElement('button');
             castButton.textContent = `Cast ${spell.Name}`;
             castButton.addEventListener('click', async () => {
+                // Get the current level slots info
+                const currentLevelSlots = spellsByLevel[level]?.slots || { used: 0, total: 0 };
+            
+                if (currentLevelSlots.total > 0 && currentLevelSlots.used >= currentLevelSlots.total) {
+                    alert('No spell slots available');
+                    return; // Stop further execution
+                }
+            
+                // If there are available slots, proceed with casting
                 const results = await evaluateDamage(spell.damage);
                 results.forEach(result => {
                     console.log(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
                     addEventToHistory(`Total damage rolled for ${spell.Name} (${result.part}): ${result.totalDamage}`);
                 });
-            });
+            
+                // Increment used slots
+                currentLevelSlots.used++;
+            
+                // Update the slots info in the spellsByLevel object
+                spellsByLevel[level].slots = currentLevelSlots;
+            
+                // Update the slots display
+                updateSlots(level, currentLevelSlots.used, currentLevelSlots.total);
+            });            
+    
             castButtonCell.appendChild(castButton);
             spellRow.appendChild(castButtonCell);
-
-            // Range
-            const rangeCell = document.createElement('td');
-            rangeCell.textContent = spell.Range;
-            spellRow.appendChild(rangeCell);
-
-            // Spell Attack
-            const spellAttackCell = document.createElement('td');
-            spellAttackCell.textContent = selectedMonster.spellAttackBonus;
-            spellRow.appendChild(spellAttackCell);
-
-            // Spell DC
-            const spellDCCell = document.createElement('td');
-            spellDCCell.textContent = selectedMonster.spellSaveDC;
-            spellRow.appendChild(spellDCCell);
-
-            // Damage/Effect
-            const damageEffectCell = document.createElement('td');
-            damageEffectCell.textContent = spell.Damage;
-            spellRow.appendChild(damageEffectCell);
-
             monsterSpellTableBody.appendChild(spellRow);
         });
     });
 }
-
-
 
 //spell damage got more complicated lel
 
@@ -565,3 +596,37 @@ function addEventToHistory(eventDescription) {
     eventHistoryBody.appendChild(newRow);
 }
 
+// Function to update slots display
+function updateSlots(level, usedSlots, totalSlots) {
+    const slotsCell = document.querySelector(`#slots-${level}`);
+    if (slotsCell) {
+        const infoText = slotsCell.querySelector('.slots-info-text');
+        const container = slotsCell.querySelector('.slots-container');
+
+        if (infoText && container) {
+            // Update the slots display
+            const slotsText = `${usedSlots}/${totalSlots}`;
+            infoText.textContent = `slots ${slotsText}`;
+            container.innerHTML = ''; // Clear existing slots
+            container.appendChild(createSlotsHtml(usedSlots, totalSlots));
+        }
+    } else {
+        console.log(`No slots cell found for level ${level}`);
+    }
+}
+
+// Example implementation of createSlotsHtml
+function createSlotsHtml(usedSlots, totalSlots) {
+    const container = document.createElement('div');
+    for (let i = 0; i < totalSlots; i++) {
+        const slot = document.createElement('div');
+        slot.style.width = '20px';
+        slot.style.height = '20px';
+        slot.style.border = '1px solid black';
+        slot.style.display = 'inline-block';
+        slot.style.marginRight = '2px';
+        slot.style.backgroundColor = i < usedSlots ? 'red' : 'white';
+        container.appendChild(slot);
+    }
+    return container;
+}

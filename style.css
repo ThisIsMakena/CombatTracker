@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
@@ -7,6 +8,7 @@ h1 {
     color: #333;
 }
 
+/* List Styles */
 ul {
     list-style-type: none;
     padding: 0;
@@ -19,60 +21,70 @@ li {
     border: 1px solid #ddd;
 }
 
-        #playerTable {
-            width: 800px;
-            border-collapse: collapse;
-        }
+/* Table Styles */
+#playerTable,
+#monsterTable,
+#monsterTraitTable,
+#monsterActionTable,
+#monsterSpellTable {
+    border-collapse: collapse;
+}
 
-        #monsterTable {
-            width: 1200px;
-            border-collapse: collapse;
-        }
+#playerTable {
+    width: 800px;
+}
 
-        #monsterTraitTable {
-            width: 1200px;
-            border-collapse: collapse;
-        }
+#monsterTable,
+#monsterTraitTable,
+#monsterActionTable {
+    width: 1200px;
+}
 
-        #monsterActionTable {
-            width: 1200px;
-            border-collapse: collapse;
-        }
+#monsterSpellTable {
+    width: fit-content;
+}
 
-        #monsterSpellTable {
-            width: 1200px;
-            border-collapse: collapse;
-        }
-
-
-        #eventHistoryTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        #eventHistoryTable th,
-        #eventHistoryTable td {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        #eventHistoryTable th {
-            background-color: #f4f4f4;
-        }
-
-th, td {
+/* Table Cells and Headers */
+#playerTable th,
+#playerTable td,
+#monsterTable th,
+#monsterTable td,
+#monsterTraitTable th,
+#monsterTraitTable td,
+#monsterActionTable th,
+#monsterActionTable td,
+#monsterSpellTable th,
+#monsterSpellTable td,
+#eventHistoryTable th,
+#eventHistoryTable td {
     border: 1px solid black;
     padding: 8px;
     text-align: center;
 }
 
-th {
+#playerTable th,
+#monsterTable th,
+#monsterTraitTable th,
+#monsterActionTable th,
+#monsterSpellTable th {
     background-color: #f2f2f2;
 }
 
-.current-health-value, .initiative-input {
-    text-align: center; 
+#eventHistoryTable th {
+    background-color: #f4f4f4;
+}
+
+/* Specific Table Styles */
+#eventHistoryTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Text Alignment */
+.current-health-value,
+.initiative-input {
+    text-align: center;
 }
 
 .spell-heading {
@@ -81,10 +93,10 @@ th {
 }
 
 .action-name {
-    font-weight: bold;      
+    font-weight: bold;
 }
 
-
+/* Layout Styles */
 .container {
     display: flex;
     justify-content: space-between;
@@ -99,4 +111,14 @@ th {
 .event-history {
     flex: 1;
     max-width: 300px; /* Adjust width as needed */
+}
+
+.slots-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust spacing between text and slots if needed */
+}
+
+.slots-info-text {
+    font-weight: bold;
 }
