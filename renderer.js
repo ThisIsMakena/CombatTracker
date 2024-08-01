@@ -286,6 +286,7 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
     }
 
     // Display Spells
+    if (selectedMonster.spellsByLevel && selectedMonster.spellsByLevel.length > 0) {
     const spellsHeader = document.createElement('h3');
     spellsHeader.textContent = 'Spells';
     monsterSpellTable.appendChild(spellsHeader);
@@ -438,7 +439,7 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         });
     });
 }
-
+}
 //spell damage got more complicated lel
 
 async function evaluateDamage(damageStr) {
