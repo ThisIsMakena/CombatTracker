@@ -1,0 +1,692 @@
+Name,Type,Alignment,Size,AC,HP,Spellcasting,Attack 1 damage,Attack 2 Damage,Attack 3 Damage,CR
+Aarakocra,Humanoid,NG,Medium,12,13,NO,1d4+2,1d6+2,,0.25
+Aboleth,Aberration,LE,Large,17,135,NO,2d6+5,3d6+5,,10
+Abominable Yeti,Monstrosity,CE,Huge,15,137,NO,4d6+7,6d6,,9
+Acolyte,Humanoid,ANY,Medium,10,9,YES,1d4,N/A,,0.25
+Air Elemental,Elemental,N,Large,15,90,NO,2d8+5,3d8+2,,5
+Allosaurus,Beast,U,Large,13,51,NO,2d10+4,1d8+4,,2
+Androsphinx,Monstrosity,LN,Large,17,199,YES,2d10+6,N/A,,17
+Animated Armor,Construct,U,Medium,18,33,NO,1d6+2,N/A,,1
+Ankheg,Monstrosity,U,Large,14,39,NO,3d6+3,3d6,,2
+Ankylosaurus,Beast,U,Huge,15,68,NO,4d6+4,N/A,,3
+Ape,Beast,U,Medium,12,19,NO,1d6+3,1d6+3,,0.5
+Arcanaloth,Fiend,NE,Medium,17,104,YES,2d4+3,N/A,,12
+Archmage,Humanoid,ANY,Medium,12,99,YES,1d4+2,N/A,,12
+Assassin,Humanoid,NOT GOOD,Medium,15,78,NO,1d6+3,1d8+3,,8
+Awakened Shrub,Plant,U,Small,9,10,NO,1d4-1,N/A,,0
+Awakened Tree,Plant,U,Huge,13,59,NO,3d6+4,N/A,,2
+Axe Beak,Beast,U,Large,11,19,NO,1d8+2,N/A,,0.25
+Azer,Elemental,LN,Medium,17,39,NO,1d8+3,N/A,,2
+Baboon,Beast,U,Small,12,3,NO,1d4-1,N/A,,0
+Badger,Beast,U,Tiny,10,3,NO,1,N/A,,0
+Balor,Fiend (Demon),CE,Huge,19,262,NO,3d8+8,2d6+8,,19
+Bandit,Humanoid,NOT LAWFUL,Medium,12,11,NO,1d6+1,1d8+1,,0.13
+Bandit Captain,Humanoid,NOT LAWFUL,Medium,15,65,NO,1d6+3,1d4+3,,2
+Banshee,Undead,CE,Medium,12,58,NO,3d6+2,N/A,,4
+Barbed Devil,Fiend (Devil),LE,Medium,15,110,NO,1d6+3,2d6+3,,5
+Barlgura,Fiend (Demon),CE,Large,15,68,YES,2d6+4,1d10+4,,5
+Basilisk,Monstrosity,U,Medium,15,52,NO,4d6+3,N/A,,3
+Bat,Beast,U,Tiny,12,1,NO,1,N/A,,0
+Bearded Devil,Fiend (Devil),LE,Medium,13,52,NO,1d8+2,1d10+3,,3
+Behir,Monstrosity,NE,Huge,17,168,NO,3d10+6,4d10+12,,11
+Beholder,Aberration,LE,Large,18,180,NO,4d6,N/A,,13
+Beholder Zombie,Undead,NE,Large,15,93,NO,4d6,N/A,,5
+Berserker,Humanoid,C,Medium,13,67,NO,1d12+3,N/A,,2
+Black Bear,Beast,U,Medium,11,19,NO,1d6+2,2d4+2,,0.5
+"Black Dragon, Adult",Dragon,CE,Huge,19,195,NO,2d10+1d8+6,2d6+6,,14
+"Black Dragon, Ancient",Dragon,CE,Gargantuan,22,367,NO,2d10+2d8+8,2d6+8,,21
+"Black Dragon, Wyrmling",Dragon,CE,Medium,17,33,NO,1d10+1d4+2,5d8,,2
+"Black Dragon, Young",Dragon,CE,Large,18,127,NO,2d10+1d8+4,2d6+4,,7
+Black Pudding,Ooze,U,Large,7,85,NO,4d8+1d6+3,N/A,,4
+Blink Dog,Fey,LG,Medium,13,22,NO,1d6+1,N/A,,0.25
+Blood Hawk,Beast,U,Small,12,7,NO,1d4+2,N/A,,0.13
+"Blue Dragon, Adult",Dragon,LE,Huge,19,225,NO,3d10+7,2d6+7,,16
+"Blue Dragon, Ancient",Dragon,LE,Gargantuan,22,481,NO,4d10+9,2d6+9,,23
+"Blue Dragon, Wyrmling",Dragon,LE,Medium,17,52,NO,1d10+1d6+3,4d10,,3
+"Blue Dragon, Young",Dragon,LE,Large,18,152,NO,3d10+5,2d6+5,,9
+Blue Slaad,Aberration,CN,Large,15,123,NO,2d6+5,2d6+5,,7
+Boar,Beast,U,Medium,11,11,NO,1d6+1,N/A,,0.25
+Bone Devil,Fiend (Devil),LE,Large,19,142,NO,1d8+4,2d8+4,,9
+Bone Naga,Undead,LE,Large,15,58,YES,5d6+3,N/A,,4
+"Brass Dragon, Adult",Dragon,CG,Huge,18,172,NO,2d10+6,2d6+6,,13
+"Brass Dragon, Ancient",Dragon,CG,Gargantuan,20,297,NO,2d10+8,2d6+8,,20
+"Brass Dragon, Wyrmling",Dragon,CG,Medium,16,16,NO,1d10+2,4d6,,1
+"Brass Dragon, Young",Dragon,CG,Large,17,110,NO,2d10+4,2d6+4,,6
+"Bronze Dragon, Adult",Dragon,LG,Huge,19,212,NO,2d10+7,2d6+7,,15
+"Bronze Dragon, Ancient",Dragon,LG,Gargantuan,22,444,NO,2d10+9,2d6+9,,22
+"Bronze Dragon, Wyrmling",Dragon,LG,Medium,17,32,NO,1d10+3,3d10,,2
+"Bronze Dragon, Young",Dragon,LG,Large,18,142,NO,2d10+5,2d6+5,,8
+Brown Bear,Beast,U,Large,11,34,NO,1d8+4,2d6+4,,1
+Bugbear,Humanoid,CE,Medium,16,27,NO,2d8+2,2d6+2,,1
+Bugbear Chief,Humanoid,CE,Medium,17,65,NO,2d8+3,2d6+3,,3
+Bulette,Monstrosity,U,Large,17,94,NO,4d12+4,N/A,,5
+Bullywug,Humanoid,NE,Medium,15,11,NO,1d4+1,1d8+1,,0.25
+Cambion,Fiend,E,Medium,19,82,YES,1d8+1d6+4,3d6,,5
+Camel,Beast,U,Large,9,15,NO,1d4,N/A,,0.13
+Carrion Crawler,Monstrosity,U,Large,13,51,NO,1d4+2,2d4+2,,2
+Cat,Beast,U,Tiny,12,2,NO,1,N/A,,0
+Centaur,Monstrosity,NG,Large,12,45,NO,1d10+4,2d6+4,,2
+Chain Devil,Fiend (Devil),LE,Medium,16,85,NO,2d6+4,N/A,,8
+Chasme,Fiend (Demon),CE,Large,15,84,NO,11d6+2,N/A,,6
+Chimera,Monstrosity,CE,Large,14,114,NO,2d6+4,1d12+4,,6
+Chuul,Aberration,CE,Large,16,93,NO,2d6+4,N/A,,4
+Clay Golem,Construct,U,Large,14,133,NO,2d10+5,N/A,,9
+Cloaker,Aberration,CN,Large,14,78,NO,2d6+3,1d8+3,,8
+Cloud Giant,Giant,N,Huge,14,200,YES,3d8+8,4d10+8,,9
+Cockatrice,Monstrosity,U,Small,11,27,NO,1d4+1,N/A,,0.5
+Commoner,Humanoid,ANY,Medium,10,4,NO,1d4,N/A,,0
+Constrictor Snake,Beast,U,large,12,13,NO,1d6+2,1d8+2,,0.25
+"Copper Dragon, Adult",Dragon,CG,Huge,18,184,NO,2d10+6,2d6+6,,14
+"Copper Dragon, Ancient",Dragon,CG,Gargantuan,21,350,NO,2d10+8,2d6+8,,21
+"Copper Dragon, Wyrmling",Dragon,CG,Medium,16,22,NO,1d10+2,4d8,,1
+"Copper Dragon, Young",Dragon,CG,Large,17,119,NO,2d10+4,2d6+4,,7
+Couatl,Celestial,LG,Medium,19,97,YES,1d6+5,2d6+3,,4
+Crab,Beast,U,Tiny,11,2,NO,1,N/A,,0
+Crawling Claw,Undead,NE,Tiny,12,2,NO,1d4+1,N/A,,0
+Crocodile,Beast,U,Large,12,19,NO,1d10+2,N/A,,0.5
+Cult Fanatic,Humanoid,NOT GOOD,Medium,13,33,YES,1d4+2,N/A,,2
+Cultist,Humanoid,NOT GOOD,Medium,12,9,NO,1d6+1,N/A,,0.13
+Cyclops,Giant,CN,Huge,14,138,NO,3d8+6,4d10+6,,6
+Dao,Elemental,NE,Large,18,187,YES,2d8+6,4d6+6,,11
+Darkmantle,Monstrosity,U,Small,11,22,NO,1d6+3,N/A,,0.5
+Death Dog,Monstrosity,NE,Medium,12,39,NO,1d6+2,N/A,,1
+Death Knight,Undead,CE,Medium,20,180,YES,1d10+4d8+5,N/A,,17
+Death Slaad,Aberration,CE,Medium,18,170,YES,1d8+2d6+5,1d10+2d6+5,,10
+Death Tyrant,Undead,LE,Large,19,187,NO,4d6,N/A,,14
+Deer,Beast,U,Medium,13,4,NO,1d4,N/A,,0
+Demilich,Undead,NE,Tiny,20,80,NO,6d6,N/A,,18
+Deva,Celestial,LG,Medium,17,136,YES,4d8+1d6+4,N/A,,10
+Dire Wolf,Beast,U,Large,14,37,NO,2d6+3,N/A,,1
+Displacer Beast,Monstrosity,LE,Large,13,85,NO,2d6+4,N/A,,3
+Djinni,Elemental,CG,Large,17,161,YES,2d6+5,N/A,,11
+Doppelganger,Monstrosity,N,Medium,14,52,NO,1d6+4,N/A,,3
+Dracolich,Undead,LE,VARIES,19,225,NO,3d10+7,2d6+7,,17
+Draft Horse,Beast,U,Large,10,19,NO,2d4+4,N/A,,0.25
+Dragon Turtle,Dragon,N,Gargantuan,20,341,NO,3d12+7,2d8+7,,17
+Dretch,Fiend (Demon),CE,small,11,18,NO,1d6,2d4,,0.25
+Drider,Monstrosity,CE,Large,19,123,YES,2d8+1d4,1d10+3,,6
+Drow,Humanoid,NE,Medium,15,13,NO,1d6+2,1d6+2,,0.25
+Drow Elite Warrior,Humanoid,NE,Medium,18,71,NO,4d6+4,1d6+4,,5
+Drow Mage,Humanoid,NE,Medium,12,45,YES,1d8+1d6-1,N/A,,7
+Drow Priestess of Lolth,Humanoid,NE,Medium,16,71,NO,6d6+2,N/A,,8
+Druid,Humanoid,ANY,Medium,11,27,YES,1d8,N/A,,2
+Dryad,Fey,N,Medium,11,22,YES,1d8+4,N/A,,1
+Duergar,Humanoid,LE,Medium,16,26,NO,1d8+2,1d6+2,,1
+Duodrone,Construct,LN,Medium,15,11,NO,1d4,1d6+1,,0.25
+Dust Mephit,Elemental,NE,Small,12,17,NO,1d4+2,N/A,,0.5
+Eagle,Beast,U,Small,12,3,NO,1d4+2,N/A,,0
+Earth Elemental,Elemental,N,Large,17,126,NO,2d8+5,N/A,,5
+Efreeti,Elemental,LE,Large,17,200,YES,2d6+6,5d6,,11
+Elephant,Beast,U,Huge,12,76,NO,3d8+5,3d10+5,,4
+Elk,Beast,U,Large,10,13,NO,1d6+3,2d4+3,,0.25
+Empyrean,Celestial,CG OR NE,Huge,22,313,YES,6d6+10,7d6,,23
+Erinyes,Fiend (Devil),LE,Medium,18,153,NO,3d8+1d10+4,4d8+3,,12
+Ettercap,Monstrosity,NE,Medium,13,44,NO,2d8+2,2d4+2,,2
+Ettin,Giant,CE,large,12,85,NO,2d8+5,2d8+5,,4
+Faerie Dragon,Dragon,CG,Tiny,15,14,YES,1,N/A,,1
+Fire Elemental,Elemental,N,large,13,102,NO,2d6+3,N/A,,5
+Fire Giant,Giant,LE,Huge,18,162,NO,6d6+7,4d10+7,,9
+Fire Snake,Elemental,NE,Medium,14,22,NO,1d6+1d4+1,1d6+1d4+1,,1
+Flameskull,Undead,NE,Tiny,13,40,YES,3d6,N/A,,4
+Flesh Golem,Construct,N,Medium,9,93,NO,2d8+4,N/A,,5
+Flumph,Aberration,LG,Small,12,7,NO,2d4+2,N/A,,0.13
+Flying Snake,Beast,U,Tiny,14,5,NO,3d4+1,N/A,,0.13
+Flying Sword,Construct,U,Small,17,17,NO,1d8+1,N/A,,0.25
+Fomorian,Giant,CE,Huge,14,149,NO,3d8+6,6d8,,8
+Frog,Beast,U,Tiny,11,1,NO,N/A,N/A,,0
+Frost Giant,Giant,NE,Huge,15,138,NO,3d12+6,4d10+6,,8
+Galeb Duhr,Elemental,N,Medium,16,85,NO,2d6+5,N/A,,6
+Gargoyle,Elemental,CE,Medium,15,52,NO,1d6+2,1d6+2,,2
+Gas Spore,Plant,U,Large,5,1,NO,1,N/A,,0.5
+Gelatinous Cube,Ooze,U,Large,6,84,NO,3d6,N/A,,2
+Ghast,Undead,CE,Medium,13,36,NO,2d8+3,2d6+3,,2
+Ghost,Undead,ANY,Medium,11,45,NO,4d6+3,N/A,,4
+Ghoul,Undead,CE,Medium,12,22,NO,2d6+2,2d4+2,,1
+Giant Ape,Beast,U,Huge,12,157,NO,3d10+6,7d6+6,,7
+Giant Badger,Beast,U,Medium,10,13,NO,1d6+1,2d4+1,,0.25
+Giant Bat,Beast,U,Large,13,22,NO,1d6+2,N/A,,0.25
+Giant Boar,Beast,U,Large,12,42,NO,10d6+3,N/A,,2
+Giant Centipede,Beast,U,small,13,4,NO,1d4+2,N/A,,0.25
+Giant Constrictor Snake,Beast,U,Huge,12,60,NO,2d6+4,2d8+4,,2
+Giant Crab,Beast,U,Medium,15,13,NO,1d6+1,N/A,,0.13
+Giant Crocodile,Beast,U,Huge,14,85,NO,3d10+5,2d8+5,,5
+Giant Eagle,Beast,U,Large,13,26,NO,1d6+3,2d6+3,,1
+Giant Elk,Beast,U,Huge,14,42,NO,2d6+4,4d8+4,,2
+Giant Fire Beetle,Beast,U,small,13,4,NO,1d6-1,N/A,,0
+Giant Frog,Beast,U,Medium,11,18,NO,1d6+1,N/A,,0.25
+Giant Goat,Beast,U,Large,11,19,NO,2d4+3,N/A,,0.5
+Giant Hyena,Beast,U,Large,12,45,NO,2d6+3,N/A,,1
+Giant Lizard,Beast,U,Large,12,19,NO,1d8+2,N/A,,0.25
+Giant Octopus,Beast,U,Large,11,52,NO,2d6+3,N/A,,1
+Giant Owl,Beast,U,Large,12,19,NO,2d6+1,N/A,,0.25
+Giant Poisonous Snake,Beast,U,Medium,14,11,NO,1d4+4,N/A,,0.25
+Giant Rat,Beast,U,Small,12,7,NO,1d4+2,N/A,,0.13
+Giant Scorpion,Beast,U,Large,15,52,NO,1d8+2,1d10+2,,3
+Giant Sea Horse,Beast,U,Large,13,16,NO,1d6+1,N/A,,0.5
+Giant Shark,Beast,U,Huge,13,126,NO,3d10+6,N/A,,5
+Giant Spider,Beast,U,Large,14,26,NO,1d8+3,N/A,,1
+Giant Toad,Beast,U,Large,11,39,NO,2d10+2,N/A,,1
+Giant Vulture,Beast,NE,Large,10,22,NO,2d4+4,2d6+2,,1
+Giant Wasp,Beast,U,Medium,12,13,NO,1d6+2,N/A,,0.5
+Giant Weasel,Beast,U,Medium,13,9,NO,1d4+3,N/A,,0.13
+Giant Wolf Spider,Beast,U,Medium,13,11,NO,1d6+1,N/A,,0.25
+Gibbering Mouther,Aberration,N,Medium,9,67,NO,5d6,N/A,,2
+Githyanki Knight,Humanoid,LE,Medium,18,91,YES,5d6+6,N/A,,8
+Githyanki Warrior,Humanoid,LE,Medium,17,46,YES,4d6+2,N/A,,3
+Githzerai Monk,Humanoid,LN,Medium,14,38,YES,3d8+2,N/A,,2
+Githzerai Zerth,Humanoid,LN,Medium,17,84,YES,2d6+3d8+4,N/A,,6
+Glabrezu,Fiend (Demon),CE,Large,17,157,YES,2d10+5,2d4+2,,9
+Gladiator,Humanoid,ANY,Medium,16,112,NO,2d8+4,2d4+4,,5
+Gnoll,Humanoid,CE,Medium,15,22,NO,1d4+2,1d8+2,,0.5
+Gnoll Fang of Yeenoghu,Humanoid,CE,Medium,14,65,NO,1d6+3,1d8+3,,4
+Gnoll Pack Lord,Humanoid,CE,Medium,15,49,NO,1d4+3,1d10+3,,2
+"Gnome, Deep (Svirfneblin)",Humanoid,NG,Small,15,16,YES,1d8+3,N/A,,0.5
+Goat,Beast,U,Medium,10,4,NO,1d4+1,N/A,,0
+Goblin,Humanoid,NE,small,15,7,NO,1d6+2,1d6+2,,0.25
+Goblin Boss,Humanoid,NE,small,17,21,NO,1d6+2,1d6+2,,1
+"Gold Dragon, Adult",Dragon,LG,Huge,19,256,NO,2d10+8,2d6+8,,17
+"Gold Dragon, Ancient",Dragon,LG,Gargantuan,22,546,NO,2d10+10,2d6+10,,24
+"Gold Dragon, Wyrmling",Dragon,LG,Medium,17,60,NO,1d10+4,4d10,,3
+"Gold Dragon, Young",Dragon,LG,Large,18,178,NO,2d10+6,2d6+6,,10
+Gorgon,Construct,U,Large,19,114,NO,2d12+5,2d10+5,,5
+Goristro,Fiend (Demon),CE,Huge,19,310,NO,3d8+7,3d10+7,,17
+Gray Ooze,Ooze,U,Medium,8,22,NO,3d6+1,N/A,,0.5
+Gray Slaad,Aberration,CN,Medium,18,127,YES,1d6+3,1d10+3,,9
+"Green Dragon, Adult",Dragon,LE,Huge,19,207,NO,2d10+2d6+6,2d6+6,,15
+"Green Dragon, Ancient",Dragon,LE,Gargantuan,21,385,NO,2d10+3d6+8,4d6+8,,22
+"Green Dragon, Wyrmling",Dragon,LE,Medium,17,38,NO,1d10+1d6+2,6d6,,2
+"Green Dragon, Young",Dragon,LE,Large,18,136,NO,2d10+2d6+4,2d6+4,,8
+Green Hag,Fey,NE,Medium,17,82,YES,2d8+4,N/A,,3
+Green Slaad,Aberration,CN,Large,16,127,YES,2d6+4,1d6+4,,8
+Grell,Aberration,NE,Medium,12,55,NO,1d10+2,2d4+2,,3
+Grick,Monstrosity,N,Medium,14,27,NO,2d6+2,1d6+2,,2
+Grick Alpha,Monstrosity,N,Medium,18,75,NO,2d6+4,4d8+4,,7
+Griffon,Monstrosity,U,Large,12,59,NO,1d8+4,2d6+4,,2
+Grimlock,Humanoid,NE,Medium,11,11,NO,2d4+3,N/A,,0.25
+Guard,Humanoid,ANY,Medium,16,11,NO,1d6+1,N/A,,0.13
+Guardian Naga,Monstrosity,LG,Large,18,127,YES,1d8+4,N/A,,10
+Gynosphinx,Monstrosity,LN,Large,17,136,YES,2d8+4,N/A,,11
+Half Ogre,Giant,C,Large,12,30,NO,2d10+3,2d6+3,,1
+Half-Red Dragon Veteran,Humanoid,ANY,Medium,18,65,NO,1d10+3,1d6+3,,5
+Harpy,Monstrosity,CE,Medium,11,38,NO,2d4+1,1d4+1,,1
+Hawk,Beast,U,Tiny,13,11,NO,1,N/A,,0
+Hell Hound,Fiend,LE,Medium,15,45,NO,1d8+2d6+3,6d6,,3
+Helmed Horror,Construct,N,Medium,20,60,NO,1d10+4,N/A,,4
+Hezrou,Fiend (Demon),CE,Large,16,136,NO,2d10+4,2d6+4,,8
+Hill Giant,Giant,CE,Huge,13,105,NO,3d8+5,3d10+5,,5
+Hippogriff,Monstrosity,U,Large,11,19,NO,1d10+3,2d6+3,,1
+Hobgoblin,Humanoid,LE,Medium,18,11,NO,1d10+1,1d8+1,,0.5
+Hobgoblin Captain,Humanoid,LE,Medium,17,39,NO,2d6+2,1d6+2,,3
+Hobgoblin Warlord,Humanoid,LE,Medium,20,97,NO,1d10+3,1d4+3,,6
+Homunculus,Construct,N,Tiny,13,5,NO,1,N/A,,0
+Hook Horror,Monstrosity,N,Large,15,75,NO,2d6+4,N/A,,3
+Horned Devil,Fiend (Devil),LE,Large,18,178,NO,2d8+6,1d8+6,,11
+Hunter Shark,Beast,U,Large,12,45,NO,2d8+4,N/A,,2
+Hydra,Monstrosity,U,Huge,15,172,NO,1d10+5,N/A,,8
+Hyena,Beast,U,Medium,11,5,NO,1d6,N/A,,0
+Ice Devil,Fiend (Devil),LE,Large,18,180,NO,5d6+5,2d4+3d6+5,,14
+Ice Mephit,Elemental,NE,Small,11,21,YES,2d4+1,2d4,,0.5
+Imp,Fiend (Devil),LE,Tiny,13,10,NO,1d4+3,N/A,,1
+Intellect Devourer,Aberration,LE,Tiny,12,21,NO,2d4+2,N/A,,2
+Invisible Stalker,Elemental,N,Medium,14,104,NO,2d6+3,N/A,,6
+Iron Golem,Construct,U,Large,20,210,NO,3d8+7,3d10+7,,16
+Jackal,Beast,U,Small,12,3,NO,1d4-1,N/A,,0
+Jackalwere,Humanoid,CE,Medium,12,18,NO,1d4+2,1d6+2,,0.5
+Kenku,Humanoid,CN,Medium,13,13,NO,1d6+3,1d6+3,,0.25
+Killer Whale,Beast,U,Huge,12,90,NO,5d6+4,N/A,,3
+Knight,Humanoid,ANY,Medium,18,52,NO,2d6+3,1d10,,3
+Kobold,Humanoid,LE,Small,12,5,NO,1d4+2,1d4+2,,0.13
+Kraken,Monstrosity,CE,Gargantuan,18,472,NO,3d8+10,3d6+10,,23
+Kuo-Toa,Humanoid,NE,Medium,13,18,NO,1d4+1,1d8+1,,0.25
+Kuo-Toa Archpriest,Humanoid,NE,Medium,13,97,YES,5d6+3,1d4+2,,6
+Kuo-Toa Whip,Humanoid,NE,Medium,11,65,YES,1d4+2,1d6+2,,1
+Lamia,Monstrosity,CE,Large,13,97,YES,2d10+3,1d4+3,,4
+Lemure,Fiend (Devil),LE,Medium,7,13,NO,1d4,N/A,,0
+Lich,Undead,E,Medium,17,135,YES,3d6,N/A,,21
+Lion,Beast,U,Large,12,26,NO,1d8+3,1d6+3,,1
+Lizard,Beast,U,Tiny,10,2,NO,1,N/A,,0
+Lizard King/Queen,Humanoid,CE,Medium,15,78,NO,1d6+3,1d4+3,,4
+Lizardfolk,Humanoid,N,Medium,15,22,NO,1d6+2,1d6+2,,0.5
+Lizardfolk Shaman,Humanoid,N,Medium,13,27,YES,1d6+2,1d4+2,,2
+Mage,Humanoid,ANY,Medium,12,40,YES,1d4+2,N/A,,6
+Magma Mephit,Elemental,NE,Small,11,22,YES,2d4+1,N/A,,0.5
+Magmin,Elemental,CN,Small,14,9,NO,2d6,N/A,,0.5
+Mammoth,Beast,U,Huge,13,126,NO,4d8+7,4d10+7,,6
+Manes,Fiend (Demon),CE,Small,9,9,NO,2d4,N/A,,0.13
+Manticore,Monstrosity,LE,Large,14,68,NO,1d8+3,1d6+3,,3
+Marid,Elemental,CN,Large,17,229,YES,2d8+6,6d6,,11
+Marilith,Fiend (Demon),CE,Large,18,189,NO,2d8+4,2d10+4,,16
+Mastiff,Beast,U,Medium,12,5,NO,1d6+1,N/A,,0.13
+Medusa,Monstrosity,LE,Medium,15,127,NO,1d4+4d6+2,1d6+2,,6
+Merfolk,Humanoid,N,Medium,11,11,NO,1d8,N/A,,0.13
+Merrow,Monstrosity,CE,Large,13,45,NO,1d8+4,2d4+4,,2
+Mezzoloth,Fiend,NE,Medium,18,75,YES,2d4+4,1d6+4,,5
+Mimic,Monstrosity,N,Medium,12,58,NO,1d8+3,2d8+3,,2
+Mind Flayer,Aberration,LE,Medium,15,71,YES,2d10+4,10d10,,7
+Minotaur,Monstrosity,CE,Large,14,76,NO,2d12+4,2d8+4,,3
+Minotaur Skeleton,Undead,LE,Large,12,67,NO,2d12+4,2d8+4,,2
+Monodrone,Construct,LN,Medium,15,5,NO,1d4+1,1d6+1,,0.13
+Mud Mephit,Elemental,NE,Small,11,27,NO,1d6+1,N/A,,0.25
+Mule,Beast,U,Medium,10,11,NO,1d4+2,N/A,,0.13
+Mummy,Undead,LE,Medium,11,58,NO,5d6+3,N/A,,3
+Mummy Lord,Undead,LE,Medium,17,97,YES,9d6+4,N/A,,15
+Myconid Adult,Plant,LN,Medium,12,22,NO,4d4,N/A,,0.5
+Myconid Sovereign,Plant,LN,Large,13,60,NO,6d4+1,N/A,,2
+Myconid Sprout,Plant,LN,Small,10,7,NO,2d4-1,N/A,,0
+Nalfeshnee,Fiend (Demon),LE,Large,18,184,NO,5d10+5,3d6+5,,13
+Needle Blight,Plant,NE,Medium,12,11,NO,2d4+1,2d6+1,,0.25
+Night Hag,Fiend,NE,Medium,17,112,YES,2d8+4,N/A,,5
+Nightmare,Fiend,NE,Large,13,68,NO,2d8+2d6+4,N/A,,3
+Noble,Humanoid,ANY,Medium,15,9,NO,1d8+1,N/A,,0.13
+Nothic,Aberration,NE,Medium,15,45,NO,1d6+3,N/A,,2
+Nycaloth,Fiend,NE,Large,18,123,YES,2d6+5,2d12+5,,9
+Ochre Jelly,Ooze,U,Large,8,45,NO,3d6+2,N/A,,2
+Octopus,Beast,U,Small,12,3,NO,1,N/A,,0
+Ogre,Giant,CE,Large,11,59,NO,2d8+4,2d6+4,,2
+Ogre Zombie,Undead,NE,Large,8,85,NO,2d8+6,N/A,,2
+Oni,Giant,LE,Large,16,110,YES,1d8+4,2d10+4,,7
+Orc,Humanoid,CE,Medium,13,15,NO,1d12+3,1d6+3,,0.5
+Orc Eye of Gruumsh,Humanoid,CE,Medium,16,45,YES,2d8+3,N/A,,2
+Orc War Chief,Humanoid,CE,Medium,16,93,NO,1d12+1d8+4,2d8+4,,4
+Orog,Humanoid,CE,Medium,18,42,NO,1d12+4,1d6+4,,2
+Otyugh,Aberration,N,Large,14,114,NO,2d8+3,2d8+3,,5
+Owl,Beast,U,Tiny,11,1,NO,1,N/A,,0
+Owlbear,Monstrosity,U,Large,13,59,NO,1d10+5,2d8+5,,3
+Panther,Beast,U,Medium,12,13,NO,1d6+2,1d4+2,,0.25
+Pegasus,Celestial,CG,Large,12,59,NO,2d6+4,N/A,,2
+Pentadrone,Construct,LN,Large,16,32,NO,1d6+2,N/A,,2
+Peryton,Monstrosity,CE,Medium,13,33,NO,1d8+3,2d4+3,,2
+Phase Spider,Monstrosity,U,Large,13,32,NO,1d10+2,N/A,,3
+Piercer,Monstrosity,U,Medium,15,22,NO,VARIES,N/A,,0.5
+Pit Fiend,Fiend (Devil),LE,Large,19,300,YES,4d6+8,2d8+8,,20
+Pixie,Fey,NG,Tiny,15,1,YES,N/A,N/A,,0.25
+Planetar,Celestial,LG,Large,19,200,YES,4d6+5d8+7,N/A,,16
+Plesiosaurus,Beast,U,Large,13,68,NO,3d6+4,N/A,,2
+Poisonous Snake,Beast,U,Tiny,13,2,NO,1,N/A,,0.13
+Polar Bear,Beast,U,Large,12,42,NO,1d8+5,2d6+5,,2
+Pony,Beast,U,Medium,10,11,NO,2d4+2,N/A,,0.13
+Priest,Humanoid,ANY,Medium,13,27,YES,1d6,N/A,,2
+Pseudodragon,Dragon,NG,Tiny,13,7,NO,1d4+2,1d4+2,,0.25
+Pteranodon,Beast,U,Medium,13,13,NO,2d4+1,N/A,,0.25
+Purple Worm,Monstrosity,U,Gargantuan,18,247,NO,3d8+9,15d6+9,,15
+Quadrone,Construct,LN,Medium,16,22,NO,1d4+1,1d6+1,,1
+Quaggoth,Humanoid,CN,Medium,13,45,NO,1d6+3,N/A,,2
+Quaggoth Spore Servant,Plant,U,Medium,13,45,NO,1d6+3,N/A,,1
+Quasit,Fiend (Demon),CE,Tiny,13,7,NO,1d4+3,N/A,,1
+Quipper,Beast,U,Tiny,13,1,NO,1,N/A,,0
+Rakshasa,Fiend,LE,Medium,16,110,YES,2d6+2,N/A,,13
+Rat,Beast,U,Tiny,10,1,NO,N/A,N/A,,0
+Raven,Beast,U,Tiny,12,1,NO,1,N/A,,0
+"Red Dragon, Adult",Dragon,CE,Huge,19,256,NO,2d10+2d6+8,2d6+8,,17
+"Red Dragon, Ancient",Dragon,CE,Gargantuan,22,546,NO,2d10+4d6+10,2d6+10,,24
+"Red Dragon, Wyrmling",Dragon,CE,Medium,17,75,NO,1d10+1d6+4,7d6,,4
+"Red Dragon, Young",Dragon,CE,Large,18,178,NO,2d10+1d6+6,2d6+6,,10
+Red Slaad,Aberration,CN,Large,14,93,NO,2d4+3,1d8+3,,5
+Reef Shark,Beast,U,Medium,12,22,NO,1d8+2,N/A,,0.5
+Remorhaz,Monstrosity,U,Huge,17,195,NO,6d10+3d6+7,N/A,,11
+Revenant,Undead,N,Medium,13,136,NO,2d6+4,N/A,,5
+Rhinoceros,Beast,U,Large,11,45,NO,2d8+5,N/A,,2
+Riding Horse,Beast,U,Large,10,13,NO,2d4+3,N/A,,0.25
+Roc,Monstrosity,U,Gargantuan,15,248,NO,4d8+9,4d6+9,,11
+Roper,Monstrosity,NE,Large,20,93,NO,4d8+4,N/A,,5
+Rug of Smothering,Construct,U,Large,12,33,NO,2d6+3,N/A,,2
+Rust Monster,Monstrosity,U,Medium,14,27,NO,1d8+1,N/A,,0.5
+Saber-Toothed Tiger,Beast,U,Large,12,52,NO,1d10+5,2d6+5,,2
+Sahuagin,Humanoid,LE,Medium,12,22,NO,1d4+1,1d4+1,,0.5
+Sahuagin Baron,Humanoid,LE,Large,16,76,NO,2d4+4,2d6+4,,5
+Sahuagin Priestess,Humanoid,LE,Medium,12,33,YES,1d4+1,1d4+1,,2
+Salamander,Elemental,NE,Large,15,90,NO,2d8+1d6+4,4d6+4,,5
+Satyr,Fey,CN,Medium,14,31,NO,2d4+1,1d6+3,,0.5
+Scarecrow,Construct,CE,Medium,11,36,NO,2d4+1,N/A,,1
+Scorpion,Beast,U,Tiny,11,1,NO,1,N/A,,0
+Scout,Humanoid,ANY,Medium,13,16,NO,1d6+2,1d8+2,,0.5
+Sea Hag,Fey,CE,Medium,14,52,NO,2d6+3,N/A,,2
+Sea Horse,Beast,U,Tiny,11,1,NO,N/A,N/A,,0
+Shadow,Undead,CE,Medium,12,16,NO,2d6+2,N/A,,0.5
+Shadow Demon,Fiend (Demon),CE,Medium,13,66,NO,2d6+3,N/A,,4
+Shadow Dragon,Dragon,CE,VARIES,18,178,NO,2d10+1d6+6,2d6+6,,13
+Shambling Mound,Plant,U,Large,15,136,NO,2d8+4,N/A,,5
+Shield Guardian,Construct,U,Large,17,142,NO,2d6+4,N/A,,7
+Shrieker,Plant,U,Medium,5,13,NO,N/A,N/A,,0
+"Silver Dragon, Adult",Dragon,LG,Huge,19,243,NO,2d10+8,2d6+8,,16
+"Silver Dragon, Ancient",Dragon,LG,Gargantuan,22,487,NO,2d10+10,2d6+10,,23
+"Silver Dragon, Wyrmling",Dragon,LG,Medium,17,45,NO,1d10+4,4d8,,2
+"Silver Dragon, Young",Dragon,LG,Large,18,168,NO,2d10+6,2d6+6,,9
+Skeleton,Undead,LE,Medium,13,13,NO,1d6+2,1d6+2,,0.25
+Slaad Tadpole,Aberration,CN,Tiny,12,10,NO,1d4+2,N/A,,0.13
+Smoke Mephit,Elemental,NE,Small,12,22,YES,1d4+2,N/A,,0.25
+Solar,Celestial,LG,Large,21,243,YES,4d6+6d8+8,8d8+6,,21
+Spectator,Aberration,LN,Medium,14,39,NO,1d6-1,N/A,,3
+Specter,Undead,CE,Medium,12,22,NO,1d6,N/A,,1
+Spider,Beast,U,Tiny,12,1,NO,1,N/A,,0
+Spined Devil,Fiend (Devil),LE,Small,15,110,NO,1d6+3,2d6+3,,2
+Spirit Naga,Monstrosity,CE,Large,15,75,YES,1d6+4,N/A,,8
+Sprite,Fey,NG,Tiny,15,2,NO,1,N/A,,0.25
+Spy,Humanoid,ANY,Medium,12,27,NO,1d6+2,1d6+2,,1
+Steam Mephit,Elemental,NE,Small,10,21,YES,2d4,N/A,,0.25
+Stirge,Beast,U,Tiny,14,2,NO,1d4+3,N/A,,0.13
+Stone Giant,Giant,N,Huge,17,126,NO,3d8+6,4d10+6,,7
+Stone Golem,Construct,U,Large,17,178,NO,3d8+6,N/A,,10
+Storm Giant,Giant,CG,Huge,16,230,YES,6d6+9,4d12+9,,13
+Succubus/Incubus,Fiend,NE,Medium,15,66,NO,1d6+3,N/A,,4
+Swarm of Bats,Beast,U,Medium,12,22,NO,VARIES,N/A,,0.25
+Swarm of Insects,Beast,U,Medium,12,22,NO,VARIES,N/A,,0.5
+Swarm of Poisonous Snakes,Beast,U,Medium,14,36,NO,VARIES,N/A,,2
+Swarm of Quippers,Beast,U,Medium,13,28,NO,VARIES,N/A,,1
+Swarm of Rats,Beast,U,Medium,10,24,NO,VARIES,N/A,,0.25
+Swarm of Ravens,Beast,U,Medium,12,24,NO,VARIES,N/A,,0.25
+Tarrasque,Monstrosity,U,Gargantuan,25,676,NO,4d8+10,4d10+10,,30
+Thri-Kreen,Humanoid,CN,Medium,15,33,NO,1d6+1,2d4+1,,1
+Thug,Humanoid,NOT GOOD,Medium,11,32,NO,1d6+2,1d10,,0.5
+Tiger,Beast,U,Large,12,37,NO,1d10+3,1d8+3,,1
+Treant,Plant,CG,Huge,16,138,NO,3d6+6,4d10+6,,9
+Tribal Warrior,Humanoid,ANY,Medium,12,11,NO,1d8+1,N/A,,0.13
+Triceratops,Beast,U,Huge,13,95,NO,4d8+6,3d10+6,,5
+Tridrone,Construct,LN,Medium,15,16,NO,1d4+1,1d6+1,,0.5
+Troglodyte,Humanoid,CE,Medium,11,13,NO,1d4+2,1d4+2,,0.25
+Troll,Giant,CE,Large,15,84,NO,1d6+4,2d6+4,,5
+Twig Blight,Plant,NE,Small,13,4,NO,1d4+1,N/A,,0.13
+Tyrannosaurus Rex,Beast,U,Huge,13,136,NO,4d12+7,3d8+7,,8
+Ultroloth,Fiend,NE,Medium,19,153,YES,1d10+3,N/A,,13
+Umber Hulk,Monstrosity,CE,Large,18,93,NO,1d8+5,2d8+5,,5
+Unicorn,Celestial,LG,Large,12,67,YES,2d6+4,1d8+4,,5
+Vampire,Undead,LE,Medium,16,144,NO,4d6+4,N/A,,13
+Vampire Spawn,Undead,NE,Medium,15,82,NO,2d4+3,3d6+3,,5
+Veteran,Humanoid,ANY,Medium,17,58,NO,1d10+3,1d6+3,,3
+Vine Blight,Plant,NE,Medium,12,26,NO,2d6+2,N/A,,0.5
+Violet Fungus,Plant,U,Medium,5,18,NO,1d8,N/A,,0.25
+Vrock,Fiend (Demon),CE,Large,15,104,NO,2d6+3,2d10+3,,6
+Vulture,Beast,U,Medium,10,5,NO,1d4,N/A,,0
+Warhorse,Beast,U,Large,11,19,NO,2d6+4,N/A,,0.5
+Warhorse Skeleton,Undead,LE,Large,13,22,NO,2d6+4,N/A,,0.5
+Water Elemental,Elemental,N,Large,14,114,NO,2d8+4,N/A,,5
+Water Weird,Elemental,N,Large,13,58,NO,2d6+3,N/A,,3
+Weasel,Beast,U,Tiny,13,1,NO,1,N/A,,0
+Werebear,Humanoid,NG,Medium,11,135,NO,2d10+4,N/A,,5
+Wereboar,Humanoid,NE,Medium,11,78,NO,2d6+3,2d6+3,,4
+Wererat,Humanoid,LE,Medium,12,35,NO,1d4+2,1d6+2,,2
+Weretiger,Humanoid,N,Medium,12,120,NO,1d10+3,1d8+3,,4
+Werewolf,Humanoid,CE,Medium,12,58,NO,1d8+2,2d4+2,,3
+"White Dragon, Adult",Dragon,CE,Huge,18,200,NO,2d10+1d8+6,2d6+6,,13
+"White Dragon, Ancient",Dragon,CE,Gargantuan,20,333,NO,2d10+2d8+8,2d6+8,,20
+"White Dragon, Wyrmling",Dragon,CE,Medium,16,32,NO,1d10+1d4+2,5d8,,2
+"White Dragon, Young",Dragon,CE,Large,14,135,NO,2d10+1d8+4,2d6+4,,6
+Wight,Undead,NE,Medium,14,45,NO,1d6+2,1d10+2,,3
+Will-O'-Wisp,Undead,CE,Tiny,19,22,NO,2d8,N/A,,2
+Winged Kobold,Humanoid,LE,Small,13,7,NO,1d4+3,1d6+3,,0.25
+Winter Wolf,Monstrosity,NE,Large,13,75,NO,2d6+4,4d8,,3
+Wolf,Beast,U,Medium,13,11,NO,2d4+4,N/A,,0.25
+Worg,Monstrosity,NE,Large,13,26,NO,2d6+3,N/A,,0.5
+Wraith,Undead,NE,Medium,13,67,NO,4d8+3,N/A,,5
+Wyvern,Dragon,U,Large,13,110,NO,2d6+4,2d8+4,,6
+Xorn,Elemental,N,Medium,19,73,NO,1d6+3,3d6+3,,5
+Yeti,Monstrosity,CE,Large,12,51,NO,2d6+4,N/A,,3
+Yochlol,Fiend (Demon),CE,Medium,15,136,YES,7d6+2,N/A,,10
+Young Remorhaz,Monstrosity,U,Large,14,93,NO,3d10+2d6+4,N/A,,5
+Yuan-Ti Abomination,Monstrosity,NE,Large,15,127,YES,4d6+4,2d6+4,,7
+Yuan-Ti Malison,Monstrosity,NE,Medium,12,66,YES,VARIES,N/A,,3
+Yuan-Ti Pureblood,Monstrosity,NE,Medium,11,40,YES,1d6+1,1d6+1,,1
+Zombie,Undead,NE,Medium,8,22,NO,1d6+1,N/A,,0.25
+Abjurer,Humanoid,ANY,Medium,12,84,YES,1d6-1,1d8-1,,
+Abyssal Wretch,Fiend (Demon),CE,Medium,11,18,,,,,
+Adult Kruthik,Monstrosity,U,Medium,18,39,,,,,
+Adult Oblex,Ooze,LE,Medium,14,75,,,,,
+Air Elemental Myrmidon,Elemental,N,Medium,18,117,,,,,
+Alhoon,Undead,ANY EVIL,Medium,15,120,YES,3d6,4d8+4,,
+Alkilith,Fiend (Demon),CE,Medium,17,157,,,,,
+Allip,Undead,NE,Medium,13,40,,,,,
+Amnizu,Fiend (Devil),LE,Medium,21,202,,,,,
+Annis Hag,Fey,CE,Large,17,75,YES,3d6+5,3d6+5,9d6+5,
+Apprentice Wizard,Humanoid,ANY,Medium,10,9,YES,1d4,,,
+Archdruid,Humanoid,ANY,Medium,16,132,YES,1d6+2,,,
+Archer,Humanoid,ANY,Medium,16,75,NO,1d6+4,1d8+4,,
+Armanite,Fiend (Demon),CE,Large,16,84,,,,,
+Astral Dreadnought,Monstrosity,U,Gargantuan,20,297,,,,,
+Aurochs,Beast,U,Large,11,38,NO,2d8+5,,,
+Autumn Eladrin,Fey,CN,Medium,19,127,,,,,
+Babau,Fiend (Demon),CE,Medium,16,82,YES,1d8+4,1d8+4,,
+Bael,Fiend (Devil),LE,Large,18,189,,,,,
+Balhannoth,Aberration,CE,Large,17,114,,,,,
+Banderhobb,Monstrosity,NE,Large,15,84,NO,5d6+5,3d6,3d6,
+Baphomet,Fiend (Demon),CE,Huge,22,275,,,,,
+Bard,Humanoid,ANY,Medium,15,44,YES,1d6+2,1d6+2,,
+Barghest,Fiend,NE,Large,17,90,YES,2d8+4,1d8+4,,
+Berbalang,Aberration,NE,Medium,14,38,,,,,
+Bheur Hag,Fey,CE,Medium,17,91,YES,2d8+1+1d6,,,
+Black Abishai,Fiend (Devil),LE,Medium,15,58,,,,,
+Blackguard,Humanoid,NOT GOOD,Medium,18,153,YES,1d10+4,1D6+2,,
+Blue Abishai,Fiend (Devil),LE,Medium,19,195,,,,,
+Bodak,Undead,CE,Medium,15,58,NO,1d4+2,4d10,,
+Boggle,Fey,CN,Small,14,18,NO,1d6-1,,,
+Boneclaw,Undead,CE,Large,16,127,,,,,
+Brontosaurus,Beast,U,Gargantuan,15,121,NO,5d8+5,6d8+5,,
+Bronze Scout,Construct,U,Medium,13,18,,,,,
+Bulezau,Fiend (Demon),CE,Medium,14,52,,,,,
+Cadaver Collecter,Construct,LE,Large,17,189,,,,,
+Canoloth,Fiend,NE,Medium,16,120,,,,,
+Catoblepas,Monstrosity,U,Large,14,84,NO,5d6+4,8d8,,
+Cave Fisher,Monstrosity,U,Medium,16,58,NO,2d6+3,,,
+Champion,Humanoid,ANY,Medium,18,143,NO,VARIES,VARIES,,
+Chitine,Monstrosity,CE,Small,14,18,NO,1d4+2,,,
+Choker,Aberration,CE,Small,16,13,,,,,
+Choldrith,Monstrosity,CE,Medium,15,66,YES,1d4+3+3d6,,,
+Cloud Giant Smiling One,Giant,CN,Huge,15,262,YES,VARIES,VARIES,,
+Conjurer,Humanoid,ANY,Medium,12,40,YES,1d4+2,,,
+Corpse Flower,Plant,CE,Large,12,127,,,,,
+Cow,Beast,U,Large,10,15,NO,1d6+4,,,
+Cranium Rat,Beast,LE,Tiny,12,2,,,,,
+Darkling,Fey,CN,Small,14,13,,,,,
+Darkling Elder,Fey,CN,Medium,15,27,,,,,
+Death Kiss,Aberration,NE,Large,16,161,,,,,
+Deathlock,Undead,NE,Medium,12,36,,,,,
+Deathlock Mastermind,Undead,NE,Medium,13,110,,,,,
+Deathlock Wight,Undead,NE,Medium,12,37,,,,,
+Deep Scion,Humanoid,NE,Medium,11,67,,,,,
+Deinoychus,Beast,U,Medium,13,26,,,,,
+Demogorgon,Fiend (Demon),CE,Huge,22,406,,,,,
+Derro,Humanoid,CE,Small,13,13,,,,,
+Derro Savant,Humanoid,CE,Small,13,36,,,,,
+Devourer,Fiend,CE,Large,16,178,,,,,
+Dhergoloth,Fiend,NE,Medium,15,119,,,,,
+Dimetrodon,Beast,U,Medium,12,19,,,,,
+Dire Troll,Giant,CE,Huge,15,172,,,,,
+Diviner,Humanoid,ANY,Medium,12,67,,,,,
+Dolphin,Beast,U,Medium,12,11,,,,,
+Draegloth,Fiend (Demon),CE,Large,15,123,,,,,
+Drow Arachnomancer,Humanoid,CE,Medium,15,162,,,,,
+Drow Favored Consort,Humanoid,NE,Medium,15,225,,,,,
+Drow House Captain,Humanoid,NE,Medium,16,162,,,,,
+Drow Inquisitor,Humanoid,NE,Medium,16,143,,,,,
+Drow Matron Mother,Humanoid,NE,Medium,17,262,,,,,
+Drow Shadowblade,Humanoid,NE,Medium,17,150,,,,,
+Duergar Despot,Humanoid,LE,Medium,21,119,,,,,
+Duergar Hammerer,Construct,LE,Medium,17,33,,,,,
+Duergar Kavalrachni,Humanoid,LE,Medium,16,26,,,,,
+Duergar Mind Master,Humanoid,LE,Medium,14,39,,,,,
+Duergar Screamer,Construct,LE,Medium,15,38,,,,,
+Duergar Soulblade,Humanoid,LE,Medium,14,18,,,,,
+Duergar Stone Guard,Humanoid,LE,Medium,18,39,,,,,
+Duergar Warlord,Humanoid,LE,Medium,20,75,,,,,
+Duergar Xarrorn,Humanoid,LE,Medium,18,26,,,,,
+Dybbuk,Fiend (Demon),CE,Medium,14,37,,,,,
+Earth Elemental Myrmidon,Elemental,N,Medium,18,127,,,,,
+Eidolon,Undead,ANY,Medium,9,63,,,,,
+Elder Brain,Aberration,LE,Large,10,210,,,,,
+Elder Oblex,Ooze,LE,Huge,16,115,,,,,
+Elder Tempest,Elemental,N,Gargantuan,19,264,,,,,
+Enchanter,Humanoid,ANY,Medium,12,40,,,,,
+Evoker,Humanoid,ANY,Medium,12,66,,,,,
+Female Steeder,Monstrosity,U,Large,14,30,,,,,
+Fire Elemental Myrmidon,Elemental,N,Medium,18,123,,,,,
+Fire Giant Dreadnought,Giant,LE,Huge,21,187,,,,,
+Firenewt Warlock of Imix,Humanoid,NE,Medium,10,33,,,,,
+Firenewt Warrior,Humanoid,NE,Medium,16,22,,,,,
+Flail Snail,Elemental,U,Large,16,52,,,,,
+Flind,Humanoid,CE,Medium,16,127,,,,,
+Fraz-Urb'luu,Fiend (Demon),CE,Large,18,337,,,,,
+Froghemoth,Monstrosity,U,Huge,14,184,,,,,
+Frost Giant Everlasting One,Giant,CE,Huge,15,189,,,,,
+Frost Salamander,Elemental,U,Huge,17,168,,,,,
+Gauth,Aberration,LE,Medium,15,67,,,,,
+Gazer,Aberration,NE,Tiny,13,13,,,,,
+Geryon,Fiend (Devil),LE,Huge,19,300,,,,,
+Giant Strider,Monstrosity,NE,Large,14,22,,,,,
+Giff,Humanoid,LN,Medium,16,60,,,,,
+Girallon,Monstrosity,U,Large,13,59,,,,,
+Githyanki Gish,Humanoid,LE,Medium,17,123,,,,,
+Githyanki Kith'rak,Humanoid,LE,Medium,18,180,,,,,
+Githyanki Supreme Commander,Humanoid,LE,Medium,18,187,,,,,
+Githzerai Anarch,Humanoid,LN,Medium,20,144,,,,,
+Githzerai Enlightened,Humanoid,LN,Medium,18,112,,,,,
+Gloom Weaver,Humanoid,N,Medium,14,104,,,,,
+Gnoll Flesh Gnawer,Humanoid,CE,Medium,14,22,,,,,
+Gnoll Hunter,Humanoid,CE,Medium,13,22,,,,,
+Gnoll Witherling,Undead,CE,Medium,12,11,,,,,
+Gray Render,Monstrosity,CN,Large,19,189,,,,,
+Graz'zt,Fiend (Demon),CE,Large,20,346,,,,,
+Green Abishai,Fiend (Devil),LE,Medium,18,187,,,,,
+Grung,Humanoid,LE,Small,12,11,,,,,
+Grung Elite Warrior,Humanoid,LE,Small,13,49,,,,,
+Grung Wildling,Humanoid,LE,Small,13,27,,,,,
+Guard Drake,Dragon,U,Medium,14,52,,,,,
+Hadrosaurus,Beast,U,Large,11,19,,,,,
+Hellfire Engine,Construct,LE,Huge,18,216,,,,,
+Hobgoblin Devastor,Humanoid,LE,Medium,13,45,,,,,
+Hobgoblin Iron Shadow,Humanoid,LE,Medium,15,32,,,,,
+Howler,Fiend,CE,Large,16,90,,,,,
+Hutijin,Fiend (Devil),LE,Large,19,200,,,,,
+Hydroloth,Fiend,NE,Medium,15,135,,,,,
+Illusionist,Humanoid,ANY,Medium,12,38,,,,,
+Iron Cobra,Construct,U,Medium,13,45,,,,,
+Juiblex,Fiend (Demon),CE,Huge,18,350,,,,,
+Ki-rin,Celestial,LG,Huge,20,152,,,,,
+Kobold Dragonshield,Humanoid,LE,Small,15,44,,,,,
+Kobold Inventor,Humanoid,LE,Small,12,13,,,,,
+Kobold Scale Sorcerer,Humanoid,LE,Small,15,27,,,,,
+Korred,Fey,CN,Small,17,102,,,,,
+Kraken Priest,Humanoid,ANY,Medium,10,75,,,,,
+Kruthik Hive Lord,Monstrosity,U,Large,20,102,,,,,
+Leucrotta,Monstrosity,CE,Large,14,67,,,,,
+Leviathan,Elemental,N,Gargantuan,17,328,,,,,
+Male Steeder,Monstrosity,U,Medium,12,13,,,,,
+Martial Arts Adept,Humanoid,ANY,Medium,16,60,,,,,
+Marut,Construct,LN,Large,22,432,,,,,
+Master Thief,Humanoid,ANY,Medium,16,84,,,,,
+Maurezhi,Fiend (Demon),CE,Medium,15,88,,,,,
+Maw Demon,Fiend (Demon),CE,Medium,13,33,,,,,
+Meazel,Humanoid,NE,Medium,13,35,,,,,
+Meenlock,Fey,NE,Small,15,31,,,,,
+Merregon,Fiend (Devil),LE,Medium,16,45,,,,,
+Merrenoloth,Fiend,NE,Medium,13,40,,,,,
+Mindwitness,Aberration,LE,Large,15,75,,,,,
+Moloch,Fiend (Devil),LE,Large,19,253,,,,,
+Molydeus,Fiend (Demon),CE,Huge,19,216,,,,,
+Morkoth,Aberration,CE,Medium,17,130,,,,,
+Mouth of Grolantor,Giant,CE,Huge,14,105,,,,,
+Nabassu,Fiend (Demon),CE,Medium,18,190,,,,,
+Nagpa,Humanoid,NE,Medium,19,187,,,,,
+Narzugon,Fiend (Devil),LE,Medium,20,112,,,,,
+Necromancer,Humanoid,ANY,Medium,12,66,,,,,
+Neogi,Aberration,LE,Small,15,33,,,,,
+Neogi Hatchling,Aberration,LE,Tiny,11,7,,,,,
+Neogi Master,Aberration,LE,Medium,15,71,,,,,
+Neothelid,Aberration,CE,Gargantuan,16,325,,,,,
+Nightwalker,Undead,CE,Huge,14,297,,,,,
+Nilbog,Humanoid,CE,Small,13,7,,,,,
+Nupperibo,Fiend (Devil),LE,Medium,13,11,,,,,
+Oaken Bolter,Construct,U,Medium,16,58,,,,,
+Oblex Spawn,Ooze,LE,Tiny,13,18,,,,,
+Ogre Battering Ram,Giant,CE,Large,14,59,,,,,
+Ogre Bolt Launcher,Giant,CE,Large,13,59,,,,,
+Ogre Chain Brute,Giant,CE,Large,11,59,,,,,
+Ogre Howdah,Giant,CE,Large,13,59,,,,,
+Oinoloth,Fiend,NE,Medium,17,126,,,,,
+Orc Blade of Ilneval,Humanoid,CE,Medium,18,60,,,,,
+Orc Claw of Luthic,Humanoid,CE,Medium,14,45,,,,,
+Orc Hand of Yurtrus,Humanoid,CE,Medium,12,30,,,,,
+Orc Nurtured One of Yurtrus,Humanoid,CE,Medium,9,30,,,,,
+Orc Red Fang of Shargaas,Humanoid,CE,Medium,15,52,,,,,
+Orcus,Fiend (Demon),CE,Huge,17,405,,,,,
+Orthon,Fiend (Devil),LE,Large,17,105,,,,,
+Phoenix,Elemental,N,Gargantuan,16,175,,,,,
+Quetzalcoatlus,Beast,U,Huge,13,30,,,,,
+Quickling,Fey,CE,Tiny,16,10,,,,,
+Red Abishai,Fiend (Devil),LE,Medium,22,255,,,,,
+Redcap,Fey,CE,Small,13,45,,,,,
+Retriever,Construct,LE,Large,19,210,,,,,
+Rot Troll,Giant,CE,Large,16,138,,,,,
+Rutterkin,Fiend (Demon),CE,Medium,12,37,,,,,
+Sacred Statue,Construct,Same as Eidolon,Large,19,95,,,,,
+Sea Spawn,Humanoid,NE,Medium,11,32,,,,,
+Shadow Dancer,Humanoid,N,Medium,15,71,,,,,
+Shadow Mastiff,Monstrosity,NE,Medium,12,33,,,,,
+Shoosuva,Fiend (Demon),CE,Large,14,110,,,,,
+Sibriex,Fiend (Demon),CE,Huge,19,150,,,,,
+Skulk,Humanoid,CN,Medium,14,18,,,,,
+Skull Lord,Undead,LE,Medium,18,105,,,,,
+Slithering Tracker,Ooze,CE,Medium,14,32,,,,,
+Soul Monger,Humanoid,N,Medium,15,123,,,,,
+Spawn of Kyuss,Undead,CE,Medium,10,76,,,,,
+Spirit Troll,Giant,CE,Large,17,97,,,,,
+Spring Eladrin,Fey,CN,Medium,19,127,,,,,
+Star Spawn Grue,Aberration,NE,Small,11,17,,,,,
+Star Spawn Hulk,Aberration,CE,Large,16,136,,,,,
+Star Spawn Larva Mage,Aberration,CE,Medium,16,168,,,,,
+Star Spawn Mangler,Aberration,CE,Medium,14,71,,,,,
+Star Spawn Seer,Aberration,NE,Medium,17,153,,,,,
+Steel Predator,Construct,LE,Large,20,207,,,,,
+Stegosaurus,Beast,U,Huge,13,76,,,,,
+Stone Cursed,Construct,LE,Medium,17,19,,,,,
+Stone Defender,Construct,U,Medium,16,52,,,,,
+Stone Giant Dreamwalker,Giant,CN,Huge,18,161,,,,,
+Storm Giant Quintessent,Giant,CG,Huge,12,230,,,,,
+Summer Eladrin,Fey,CN,Medium,19,127,,,,,
+Swarm of Cranium Rats,Beast,LE,Tiny,12,36,,,,,
+Swarm of Rot Grubs,Beast,U,Medium,8,22,,,,,
+Swashbuckler,Humanoid,NOT LAWFUL,Medium,17,66,,,,,
+Sword Wraith Commander,Undead,LE,Medium,18,127,,,,,
+Sword Wraith Warrior,Undead,LE,Medium,16,45,,,,,
+Tanarukk,Fiend (demon),CE,Medium,14,95,,,,,
+The Angry,Monstrosity,NE,Medium,18,255,,,,,
+The Hungry,Monstrosity,NE,Medium,17,225,,,,,
+The Lonely,Monstrosity,NE,Medium,16,112,,,,,
+The Lost,Monstrosity,NE,Medium,15,78,,,,,
+The Wretched,Monstrosity,NE,Small,15,10,,,,,
+Thorny,Plant,N,Medium,14,27,,,,,
+Titivilus,Fiend (Devil),LE,Medium,20,127,,,,,
+Tlingcalli,Monstrosity,NE,Large,15,85,,,,,
+Tortle,Humanoid,LG,Medium,17,22,,,,,
+Tortle Druid,Humanoid,LN,Medium,17,33,,,,,
+Transmuter,Humanoid,ANY,Medium,12,40,,,,,
+Trapper,Monstrosity,U,Large,13,85,,,,,
+Ulitharid,Aberration,LE,Large,15,127,,,,,
+Vampiric Mist,Undead,CE,Medium,13,30,,,,,
+Vargouille,Fiend,CE,Tiny,12,13,,,,,
+Vegepygmy,Plant,N,Small,13,9,,,,,
+Vegepygmy Chief,Plant,N,Small,14,33,,,,,
+Velociraptor,Beast,U,Tiny,13,10,,,,,
+Venom Troll,Giant,CE,Large,15,94,,,,,
+War Priest,Humanoid,ANY,Medium,18,117,,,,,
+Warlock of the Archfey,Humanoid,ANY,Medium,11,49,,,,,
+Warlock of the Fiend,Humanoid,ANY,Medium,12,78,,,,,
+Warlock of the Great Old One,Humanoid,ANY,Medium,12,91,,,,,
+Warlord,Humanoid,ANY,Medium,18,227,,,,,
+Wastrilith,Fiend (Demon),CE,Large,18,157,,,,,
+Water Elemental Myrmidon,Elemental,N,Medium,18,127,,,,,
+White Abishai,Fiend (Devil),LE,Medium,15,68,,,,,
+Winter Eladrin,Fey,CN,Medium,19,127,,,,,
+Wood Woad,Plant,LN,Medium,18,75,,,,,
+Xvart,Humanoid,CE,Small,13,7,,,,,
+Xvart Warlock of Raxivort,Humanoid,CE,Small,12,22,,,,,
+Yagnoloth,Fiend,NE,Large,17,147,,,,,
+Yeenoghu,Fiend (Demon),CE,Huge,20,333,,,,,
+Yeth Hound,Fey,NE,Large,14,51,,,,,
+Young Kruthik,Monstrosity,U,Small,16,9,,,,,
+Yuan-ti Anathema,Monstrosity,NE,Huge,16,189,,,,,
+Yuan-ti Broodguard,Humanoid,NE,Medium,14,45,,,,,
+Yuan-ti Mind Whisperer,Monstrosity,NE,Medium,14,71,,,,,
+Yuan-ti Nightmare Speaker,Monstrosity,NE,Medium,14,71,,,,,
+Yuan-ti Pit Master,Monstrosity,NE,Medium,14,88,,,,,
+Zaratan,Elemental,N,Gargantuan,21,307,,,,,
+Zariel,Fiend (Devil),LE,Large,21,580,,,,,
+Zuggtmoy,Fiend (Demon),CE,Large,18,304,,,,,
