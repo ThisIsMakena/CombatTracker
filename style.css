@@ -44,8 +44,12 @@ li {
     width: fit-content;
 }
 
+#monsterActionTable {
+    width: fit-content;
+}
+
 /* Table Cells and Headers */
-#playerTable th,
+
 #playerTable td,
 #monsterTable th,
 #monsterTable td,
@@ -121,4 +125,10 @@ li {
 
 .slots-info-text {
     font-weight: bold;
+}
+
+
+/* Add this to your CSS file or <style> block */
+.highlight {
+    background-color: rgb(255, 0, 255); /* or any color you prefer */
 }

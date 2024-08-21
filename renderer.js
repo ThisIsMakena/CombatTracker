@@ -9,6 +9,12 @@ window.api.onInitPlayers((players) => {
         // Players column
         let cell = document.createElement('td');
         cell.textContent = player.Players; // Ensure correct property name
+        cell.addEventListener('click', () => {
+           
+            monsterSpellTable.innerHTML = '';
+            monsterTraitTable.innerHTML = '';
+            monsterActionTable.innerHTML = '';
+        });
         row.appendChild(cell);
     
         // Max Health column
@@ -81,8 +87,9 @@ window.api.onInitPlayers((players) => {
         row.appendChild(initiativeCell);
     
         playerTableBody.appendChild(row);
+
+        row.addEventListener('click', toggleRowHighlight);
     });
-    
 });
 
 // Roll and sort initiative
@@ -223,67 +230,131 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
         const actionsHeader = document.createElement('h3');
         actionsHeader.textContent = 'Actions';
         monsterActionTable.appendChild(actionsHeader);
-
+    
+        const actionTable = document.createElement('table');
+        actionTable.classList.add('action-table'); // Add a class for CSS styling
+    
         selectedMonster.action.forEach(action => {
-            const actionDiv = document.createElement('div');
-            const actionName = document.createElement('div');
-            actionName.classList.add('action-name'); // Adds div id for css
-            actionName.textContent = `Name: ${action.name}`;
-            actionDiv.appendChild(actionName);
-
+            const actionRow = document.createElement('tr');
+    
+            // Create a cell for the action name
+            const nameCell = document.createElement('td');
+            nameCell.textContent = `Name: ${action.name}`;
+            nameCell.classList.add('action-name'); // Adds class for CSS styling
+            actionRow.appendChild(nameCell);
+    
+            // Create a cell for the action type (if exists)
             if (action.type) {
-                const actionType = document.createElement('div');
-                actionType.textContent = `Type: ${action.type}`;
-                actionDiv.appendChild(actionType);
+                const typeCell = document.createElement('td');
+                typeCell.textContent = `Type: ${action.type}`;
+                actionRow.appendChild(typeCell);
             }
-
+    
+            // Create a cell for To Hit (if exists)
             if (action.toHit) {
-                const actionToHit = document.createElement('div');
-                actionToHit.textContent = `To Hit: ${action.toHit}`;
-                actionDiv.appendChild(actionToHit);
+                const toHitCell = document.createElement('td');
+                toHitCell.textContent = `To Hit: ${action.toHit}`;
+                actionRow.appendChild(toHitCell);
             }
-
+    
+            // Create a cell for Reach (if exists)
             if (action.reach) {
-                const actionReach = document.createElement('div');
-                actionReach.textContent = `Reach: ${action.reach}`;
-                actionDiv.appendChild(actionReach);
+                const reachCell = document.createElement('td');
+                reachCell.textContent = `Reach: ${action.reach}`;
+                actionRow.appendChild(reachCell);
             }
-
+    
+            // Create a cell for Range (if exists)
             if (action.range) {
-                const actionRange = document.createElement('div');
-                actionRange.textContent = `Range: ${action.range}`;
-                actionDiv.appendChild(actionRange);
+                const rangeCell = document.createElement('td');
+                rangeCell.textContent = `Range: ${action.range}`;
+                actionRow.appendChild(rangeCell);
             }
-
+    
+            // Create a cell for Targets (if exists)
             if (action.targets) {
-                const actionTargets = document.createElement('div');
-                actionTargets.textContent = `Targets: ${action.targets}`;
-                actionDiv.appendChild(actionTargets);
+                const targetsCell = document.createElement('td');
+                targetsCell.textContent = `Targets: ${action.targets}`;
+                actionRow.appendChild(targetsCell);
             }
-
+    
+            // Create a cell for Damage (if exists)
             if (action.damage) {
-                const actionDamage = document.createElement('div');
-                actionDamage.textContent = `Damage: ${action.damage}`;
-                actionDiv.appendChild(actionDamage);
-            }
+                const damageCell = document.createElement('td');
+                
+                // Extract the damage expression (e.g., "1d6 - 1")
+                const damageMatch = action.damage.match(/\(([^)]+)\)/);
+                const damageExpression = damageMatch ? damageMatch[1] : '';
+    
+                // Create a button for evaluating damage
+                const damageButton = document.createElement('button');
+                damageButton.textContent = `Evaluate Damage: ${action.damage}`;
 
+                damageButton.addEventListener('click', async () => {
+                    const damageMatch = action.damage.match(/\(([^)]+)\)/);
+                    const damageExpression = damageMatch ? damageMatch[1] : '';
+
+                    if (damageExpression) {
+                        const results = await evaluateDamage(damageExpression);
+
+                        results.forEach(result => {
+                            const message = `Total damage rolled for ${action.name} (${result.part}): ${result.totalDamage}`;
+                            console.log(message);
+                            addEventToHistory(message);
+                        });
+                    }
+                });
+
+                damageCell.appendChild(damageButton);
+
+                actionRow.appendChild(damageCell);
+            }
+    
+            // Create a cell for Alternative Damage (if exists)
             if (action.altDamage) {
-                const actionAltDamage = document.createElement('div');
-                actionAltDamage.textContent = `Alternative Damage: ${action.altDamage}`;
-                actionDiv.appendChild(actionAltDamage);
-            }
+                const altDamageCell = document.createElement('td');
+                
+                // Extract the alt damage expression (e.g., "1d6 + 2")
+                const altDamageMatch = action.altDamage.match(/\(([^)]+)\)/);
+                const altDamageExpression = altDamageMatch ? altDamageMatch[1] : '';
+    
+                // Create a button for evaluating damage
+                const altDamageButton = document.createElement('button');
+                altDamageButton.textContent = `Evaluate Damage: ${action.altDamage}`;
 
-            if (action.info) {
-                const actionInfo = document.createElement('div');
-                actionInfo.textContent = `Additional Info: ${action.info}`;
-                actionDiv.appendChild(actionInfo);
+                altDamageButton.addEventListener('click', async () => {
+                    const damageMatch = action.altDamage.match(/\(([^)]+)\)/);
+                    const damageExpression = damageMatch ? damageMatch[1] : '';
+
+                    if (damageExpression) {
+                        const results = await evaluateDamage(damageExpression);
+
+                        results.forEach(result => {
+                            const message = `Total damage rolled for ${action.name} (${result.part}): ${result.totalDamage}`;
+                            console.log(message);
+                            addEventToHistory(message);
+                        });
+                    }
+                });
+
+                altDamageCell.appendChild(altDamageButton);
+                actionRow.appendChild(altDamageCell);
             }
-            const separator = document.createElement('p');
-            separator.textContent = ''; // Empty paragraph for spacing
-            monsterActionTable.appendChild(separator);
-            monsterActionTable.appendChild(actionDiv);
+    
+            // Create a cell for Additional Info (if exists)
+            if (action.info) {
+                const infoCell = document.createElement('td');
+                infoCell.textContent = `Additional Info: ${action.info}`;
+                actionRow.appendChild(infoCell);
+            }
+    
+            actionTable.appendChild(actionRow);
         });
+    
+        monsterActionTable.appendChild(actionTable);
     }
+    
+    
 
     // Display Spells
     if (selectedMonster.spellsByLevel && selectedMonster.spellsByLevel.length > 0) {
@@ -443,39 +514,51 @@ function displaySelectedMonsterSpells(monsterName, spellsData) {
 //spell damage got more complicated lel
 
 async function evaluateDamage(damageStr) {
-    const parts = damageStr.split('|').map(part => part.trim());
+    const fixedStr = damageStr.replace(/\s+/g, '');
+
+    const parts = fixedStr.split('|').map(part => part.trim());
     let results = [];
 
     for (const part of parts) {
-        // Check for a + modifier
-        const [dicePart, modifierPart] = part.split('+').map(str => str.trim());
+        // Split on + or - while keeping the operators
+        const regex = /(\d+d\d+)|([+-]\s*\d+)/g;
+        const matches = part.match(regex);
 
-        // Roll the dice part
-        if (dicePart.includes('d')) {
-            const [diceCount, diceSides] = dicePart.split('d').map(Number);
-            let totalDamage = 0;
-            for (let i = 0; i < diceCount; i++) {
-                const damage = await window.api.rollDie(diceSides);
-                totalDamage += damage;
-            }
+        let totalDamage = 0;
 
-            // Add the modifier if it exists
-            if (modifierPart) {
-                totalDamage += parseInt(modifierPart, 10);
+        if (matches) {
+            for (let match of matches) {
+                match = match.trim();
+
+                if (match.includes('d')) {
+                    // Handle dice rolls (e.g., "1d6")
+                    const [diceCount, diceSides] = match.split('d').map(Number);
+                    for (let i = 0; i < diceCount; i++) {
+                        const damage = await window.api.rollDie(diceSides);
+                        totalDamage += damage;
+                    }
+                } else {
+                    // Handle modifiers (e.g., "+2" or "-1")
+                    const modifier = parseInt(match, 10);
+                    totalDamage += modifier;
+                }
             }
 
             results.push({ part, totalDamage });
         } else {
-            const totalDamage = parseInt(dicePart, 10);
-            if (modifierPart) {
-                totalDamage += parseInt(modifierPart, 10);
-            }
+            const totalDamage = parseInt(part, 10);
             results.push({ part, totalDamage });
         }
     }
 
     return results;
 }
+
+
+
+
+
+
 let monsterCopies = [];
 function addMonsterToPlayerTable(monsterName) {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
@@ -570,6 +653,9 @@ function addMonsterToPlayerTable(monsterName) {
 
         // Append the entire row to the player table body
         playerTableBody.appendChild(monsterRow);
+        
+        monsterRow.addEventListener('click', toggleRowHighlight);
+        
     }
 }
 
@@ -619,7 +705,7 @@ function updateSlots(level, usedSlots, totalSlots) {
     }
 }
 
-// Example implementation of createSlotsHtml
+// visual spell slot counting
 function createSlotsHtml(usedSlots, totalSlots) {
     const container = document.createElement('div');
     for (let i = 0; i < totalSlots; i++) {
@@ -633,4 +719,17 @@ function createSlotsHtml(usedSlots, totalSlots) {
         container.appendChild(slot);
     }
     return container;
+}
+
+
+// Function to toggle row highlight
+function toggleRowHighlight(event) {
+    const rows = document.querySelectorAll('#playerTable tbody tr');
+    rows.forEach(row => {
+        if (row === event.currentTarget) {
+            row.classList.toggle('highlight');
+        } else {
+            row.classList.remove('highlight');
+        }
+    });
 }

@@ -156,7 +156,7 @@ function getMonsters(callback) {
                         spellAttackBonus: spellAttackBonus,     // Add spell attack bonus
                         spellsByLevel: spellsByLevel,           // Store spells grouped by level
                         traits: traits,                        // Store traits
-                        action: actions //actions
+                        action: actions                     //actions
                     };
                 });
 
