@@ -20,8 +20,8 @@ contextBridge.exposeInMainWorld('api', {
     onInitPlayers: (callback) => {
         ipcRenderer.on('init-players', (event, players) => callback(players));
     },
-    applyHealing: (player, amount) => ipcRenderer.invoke('apply-healing', player, amount),
-    applyDamage: (player, amount) => ipcRenderer.invoke('apply-damage', player, amount),
+    applyHealing: (entity, amount) => ipcRenderer.invoke('apply-healing', entity, amount),
+    applyDamage: (entity, amount) => ipcRenderer.invoke('apply-damage', entity, amount),
     rollDie: (sides) => ipcRenderer.invoke('roll-die', sides),
     getMonsters: () => ipcRenderer.invoke('get-monsters'),
     getSpells: () => ipcRenderer.invoke('get-spells'),

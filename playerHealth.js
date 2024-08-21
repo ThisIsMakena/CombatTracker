@@ -22,7 +22,7 @@ async function applyDamage(entity, amount) {
     return new Promise((resolve, reject) => {
         try {
             // Use 'hp' for monsters and 'Health' for players
-            entity.CurrentHealth = Math.max(entity.CurrentHealth - amount, 0);
+                        entity.CurrentHealth = Math.max(entity.CurrentHealth - amount, 0);
             entity.CurrentHealth = parseInt(entity.CurrentHealth, 10); // Ensure CurrentHealth is an integer
             resolve(entity);
         } catch (error) {

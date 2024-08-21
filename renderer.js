@@ -476,42 +476,45 @@ async function evaluateDamage(damageStr) {
 
     return results;
 }
-
-// Function to add the selected monster to the player table
+let monsterCopies = [];
 function addMonsterToPlayerTable(monsterName) {
     const playerTableBody = document.getElementById('playerTable').getElementsByTagName('tbody')[0];
     const selectedMonster = window.monstersData.find(monster => monster.name === monsterName);
+    
     if (selectedMonster) {
+        // Create a unique ID for the new monster
+        const monsterId = monsterCopies.length + 1; // Increment ID based on length of monsterCopies array
+        
+        // Make a copy of the selected monster and assign the ID and initial health
+        const monsterCopy = { ...selectedMonster, id: monsterId, CurrentHealth: selectedMonster.hp };
+        
+        // Store the monster copy in the array
+        monsterCopies.push(monsterCopy);
+
         const monsterRow = document.createElement('tr');
 
         // Players column
         let cell = document.createElement('td');
-        cell.textContent = selectedMonster.name;
+        cell.textContent = `${monsterCopy.name} (ID: ${monsterCopy.id})`; // Display the name and ID
 
         cell.addEventListener('click', () => {
-            displaySelectedMonster(selectedMonster.name);
-            displaySelectedMonsterSpells(selectedMonster.name, window.spellsData);
+            displaySelectedMonster(monsterCopy.name);
+            displaySelectedMonsterSpells(monsterCopy.name, window.spellsData);
         });
 
         monsterRow.appendChild(cell);
 
         // Max Health column
         cell = document.createElement('td');
-        cell.textContent = selectedMonster.hp;
+        cell.textContent = monsterCopy.hp;
         monsterRow.appendChild(cell);
 
         // Current Health column
         const currentHealthCell = document.createElement('td');
-        selectedMonster.CurrentHealth = parseInt(selectedMonster.hp, 10); // Initialize CurrentHealth to max health
-        if (isNaN(selectedMonster.CurrentHealth)) {
-            selectedMonster.CurrentHealth = 0; // Fallback to 0 if initialization fails
-        }
-        console.log('CurrentHealth initialized to:', selectedMonster.CurrentHealth);
-        currentHealthCell.textContent = selectedMonster.CurrentHealth;
+        currentHealthCell.textContent = monsterCopy.CurrentHealth;
         monsterRow.appendChild(currentHealthCell);
 
         cell = document.createElement('td');
-
         const actionInput = document.createElement('input');
         actionInput.type = 'text';
         actionInput.value = '';
@@ -522,14 +525,14 @@ function addMonsterToPlayerTable(monsterName) {
         healButton.addEventListener('click', async () => {
             const value = parseInt(actionInput.value) || 0;
             try {
-                const updatedEntity = await window.api.applyHealing(selectedMonster, value);
-                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
-                currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
+                const updatedEntity = await window.api.applyHealing(monsterCopy, value);
+                monsterCopy.CurrentHealth = updatedEntity.CurrentHealth; // Update the health value
+                currentHealthCell.textContent = monsterCopy.CurrentHealth; // Update the table
                 actionInput.value = ''; // Clear the text field after healing
-                addEventToHistory(`Current Health: ${selectedMonster.CurrentHealth}, Heal Amount: ${value}`);
+                addEventToHistory(`Current Health: ${monsterCopy.CurrentHealth}, Heal Amount: ${value}`);
                 
                 console.log('Healing/Damage value:', value);
-                console.log('Current Health:', selectedMonster.CurrentHealth, 'Heal Amount:', value);
+                console.log('Current Health:', monsterCopy.CurrentHealth, 'Heal Amount:', value);
             } catch (error) {
                 console.error('Error applying healing:', error);
             }
@@ -540,13 +543,13 @@ function addMonsterToPlayerTable(monsterName) {
         damageButton.addEventListener('click', async () => {
             const value = parseInt(actionInput.value) || 0;
             try {
-                const updatedEntity = await window.api.applyDamage(selectedMonster, value);
-                selectedMonster.CurrentHealth = updatedEntity.CurrentHealth; //update the health value
-                currentHealthCell.textContent = selectedMonster.CurrentHealth; //update the table
+                const updatedEntity = await window.api.applyDamage(monsterCopy, value);
+                monsterCopy.CurrentHealth = updatedEntity.CurrentHealth; // Update the health value
+                currentHealthCell.textContent = monsterCopy.CurrentHealth; // Update the table
                 actionInput.value = ''; // Clear the text field after damaging
-                addEventToHistory(`Current Health: ${selectedMonster.CurrentHealth}, Damage Amount: ${value}`);
+                addEventToHistory(`Current Health: ${monsterCopy.CurrentHealth}, Damage Amount: ${value}`);
                 console.log('Healing/Damage value:', value);
-                console.log('Current Health:', selectedMonster.CurrentHealth, 'Damage Amount:', value);
+                console.log('Current Health:', monsterCopy.CurrentHealth, 'Damage Amount:', value);
             } catch (error) {
                 console.error('Error applying damage:', error);
             }

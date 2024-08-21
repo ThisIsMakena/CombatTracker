@@ -142,6 +142,7 @@ function getMonsters(callback) {
                     return {
                         name: (monster.name && monster.name[0]) || '',
                         hp: hpMatch ? parseInt(hpMatch[1], 10) : 0,
+                        currentHp: hpMatch ? parseInt(hpMatch[1], 10) : 0,
                         ac: (monster.ac && monster.ac[0]) || 0,
                         size: (monster.size && monster.size[0]) || '',
                         passivePerception: parseInt((monster.passive && monster.passive[0]) || 0),
